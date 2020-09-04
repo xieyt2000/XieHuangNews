@@ -11,6 +11,10 @@ class NewsHistory {
 
     static File HistoryFile;
 
+    static void clear() {
+        HistoryFile.delete();
+    }
+
     static void saveNews(NewsPiece news) {
         try (PrintStream ps = new PrintStream(new FileOutputStream(HistoryFile, true))) {
             ps.println(news);

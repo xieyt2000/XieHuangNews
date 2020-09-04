@@ -75,4 +75,7 @@ public class NewsAPI {
         return NewsHistory.readHistory();
     }
 
+    static public void clearHistory() {
+        NewsHistory.clear();
+    }
 }
