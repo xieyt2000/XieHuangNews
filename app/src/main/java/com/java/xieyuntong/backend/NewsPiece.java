@@ -4,6 +4,21 @@ import androidx.annotation.NonNull;
 
 
 public class NewsPiece {
+    // class variables
+    public enum NewsType {
+        NEWS("news"), PAPER("paper");
+        private final String text;
+
+        NewsType(String text) {
+            this.text = text;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return text;
+        }
+    }
 
     private final NewsType type;
     private final String time;
@@ -12,6 +27,7 @@ public class NewsPiece {
     private final String content;
     private boolean haveRead = false;
 
+    
     //constructor
     NewsPiece(NewsType type, String date, String source, String title, String content) {
         this.type = type;
@@ -20,6 +36,7 @@ public class NewsPiece {
         this.title = title;
         this.content = content;
     }
+
 
     // method to access class variables
     public NewsType getType() {
@@ -46,6 +63,7 @@ public class NewsPiece {
         return haveRead;
     }
 
+
     // method to change news status
     void read() {
         haveRead = true;
@@ -53,21 +71,5 @@ public class NewsPiece {
 
     void resetRead() {
         haveRead = false;
-    }
-
-    // class variables
-    public enum NewsType {
-        NEWS("news"), PAPER("paper");
-        private final String text;
-
-        NewsType(String text) {
-            this.text = text;
-        }
-
-        @NonNull
-        @Override
-        public String toString() {
-            return text;
-        }
     }
 }

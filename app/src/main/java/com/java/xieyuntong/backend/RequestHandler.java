@@ -15,7 +15,8 @@ import java.util.Map;
 
 class RequestHandler {
 
-    String paraMap2String(String urlStr, final Map<String, String> paraMap) {
+    //construct URL string for "GET" method with parameters
+    static String constructURL(String urlStr, final Map<String, String> paraMap) {
         StringBuilder builder = new StringBuilder(urlStr + "?");
         for (Map.Entry<String, String> parameter : paraMap.entrySet()) {
             builder.append(parameter.getKey());
@@ -26,9 +27,10 @@ class RequestHandler {
         return builder.substring(0, builder.length() - 1);
     }
 
-    String httpGet(String URLStr, final Map<String, String> parameters) {
+    //http "GET" return string
+    static String httpGet(String URLStr, final Map<String, String> parameters) {
         try {
-            URL url = new URL(paraMap2String(URLStr, parameters));
+            URL url = new URL(constructURL(URLStr, parameters));
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -40,7 +42,7 @@ class RequestHandler {
         }
     }
 
-    ArrayList<NewsPiece> requestNews(NewsPiece.NewsType type, int page, int size) {
+    static ArrayList<NewsPiece> requestNews(NewsPiece.NewsType type, int page, int size) {
         LinkedHashMap<String, String> para = new LinkedHashMap<>();
         para.put("type", type.toString());
         para.put("page", Integer.toString(page));
@@ -49,6 +51,7 @@ class RequestHandler {
         String jsonStr = httpGet(newsURLStr, para);
         ArrayList<NewsPiece> res = new ArrayList<>();
         try {
+            assert jsonStr != null;
             JSONObject jsonObj = new JSONObject(jsonStr);
             JSONArray jsonDataArr = jsonObj.getJSONArray("data");
             for (int i = 0; i < jsonDataArr.length(); i++) {
