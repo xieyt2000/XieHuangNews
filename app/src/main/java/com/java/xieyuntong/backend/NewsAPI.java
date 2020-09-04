@@ -36,9 +36,6 @@ public class NewsAPI {
         reset();
     }
 
-    static public void saveNews(NewsPiece news) {
-
-    }
 
     static public ArrayList<NewsPiece> search(String query) {
         ArrayList<NewsPiece> res = new ArrayList<>();
@@ -54,7 +51,7 @@ public class NewsAPI {
     //action to take when client read a news
     static public void read(final NewsPiece newsPiece) {
         newsPiece.read();
-        saveNews(newsPiece);
+        NewsHistory.saveNews(newsPiece);
     }
 
     static public void reset() {
@@ -62,6 +59,9 @@ public class NewsAPI {
     }
 
     static public void setType(NewsPiece.NewsType type) {
+        if (type.equals(NewsAPI.type)) {
+            return;
+        }
         reset();
         NewsAPI.type = type;
     }
@@ -69,6 +69,10 @@ public class NewsAPI {
     static public ArrayList<NewsPiece> refresh() {
         reset();
         return getNextPage();
+    }
+
+    static public ArrayList<NewsPiece> getHistory() {
+        return NewsHistory.readHistory();
     }
 
 }

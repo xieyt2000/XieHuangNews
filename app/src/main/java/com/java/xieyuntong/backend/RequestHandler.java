@@ -58,7 +58,7 @@ class RequestHandler {
                 JSONObject jsonNewsPieceObj = jsonDataArr.getJSONObject(i);
                 res.add(new NewsPiece(type, jsonNewsPieceObj.getString("date"),
                         jsonNewsPieceObj.getString("source"), jsonNewsPieceObj.getString("title"),
-                        jsonNewsPieceObj.getString("content")));
+                        jsonNewsPieceObj.getString("content"), jsonNewsPieceObj.getString("_id")));
             }
         } catch (JSONException e) {
             e.printStackTrace();

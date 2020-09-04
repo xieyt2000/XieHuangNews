@@ -4,21 +4,7 @@ import androidx.annotation.NonNull;
 
 
 public class NewsPiece {
-    // class variables
-    public enum NewsType {
-        NEWS("news"), PAPER("paper");
-        private final String text;
-
-        NewsType(String text) {
-            this.text = text;
-        }
-
-        @NonNull
-        @Override
-        public String toString() {
-            return text;
-        }
-    }
+    private final String ID;   //ID from aminer
 
     private final NewsType type;
     private final String time;
@@ -27,18 +13,59 @@ public class NewsPiece {
     private final String content;
     private boolean haveRead = false;
 
-    
     //constructor
-    NewsPiece(NewsType type, String date, String source, String title, String content) {
+    NewsPiece(NewsType type, String time, String source, String title, String content, String ID) {
         this.type = type;
-        this.time = date;
+        this.time = time;
         this.source = source;
         this.title = title;
         this.content = content;
+        this.ID = ID;
+    }
+
+
+    NewsPiece(String str) {
+        String[] strList = str.split("###");
+        this.type = NewsType.fromString(strList[0]);
+        this.time = strList[1];
+        this.source = strList[2];
+        this.title = strList[3];
+        this.content = strList[4];
+        this.ID = strList[5];
+    }
+
+    //basic override method
+    @NonNull
+    @Override
+    public String toString() {
+        return String.join("###", type.toString(), time, source, title, content, ID);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof NewsPiece)) return false;
+        NewsPiece cmpNews = (NewsPiece) obj;
+        return cmpNews.ID.equals(this.ID);
+    }
+
+    void read() {
+        haveRead = true;
+    }
+
+
+    // method to change news status
+
+    void resetRead() {
+        haveRead = false;
+    }
+
+    String getID() {
+        return ID;
     }
 
 
     // method to access class variables
+
     public NewsType getType() {
         return type;
     }
@@ -63,13 +90,24 @@ public class NewsPiece {
         return haveRead;
     }
 
+    // class variables
+    public enum NewsType {
+        NEWS("news"), PAPER("paper");
+        private final String text;
 
-    // method to change news status
-    void read() {
-        haveRead = true;
-    }
+        NewsType(String text) {
+            this.text = text;
+        }
 
-    void resetRead() {
-        haveRead = false;
+        @NonNull
+        @Override
+        public String toString() {
+            return text;
+        }
+
+        static public NewsType fromString(String str) {
+            if (str.equals("news")) return NEWS;
+            else return PAPER;
+        }
     }
 }
