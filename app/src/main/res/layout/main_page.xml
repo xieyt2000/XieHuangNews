@@ -8,7 +8,7 @@
     <com.jwenfeng.library.pulltorefresh.PullToRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/pull_to_refresh"
+        android:id="@+id/pulltorefreshlayout"
         android:dividerHeight="1px"
         android:divider="#FF1493"
         android:background="#FFFFFF">

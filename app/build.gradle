@@ -31,5 +31,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     compile 'com.jwenfeng.pulltorefresh:library:1.0.3'
+    compile 'asia.ivity.android:drag-sort-listview:1.0'
 
 }

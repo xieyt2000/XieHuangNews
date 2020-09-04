@@ -57,14 +57,7 @@
         android:text="@string/scholar"
         android:textSize="@dimen/text_size_large"
         android:layout_marginTop="30dp"/>
-    <TextView
-        android:id="@+id/col_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/category"
-        android:textSize="@dimen/text_size_large"
-        android:layout_marginTop="30dp"/>
+
     <TextView
         android:id="@+id/col_history"
         android:layout_width="wrap_content"
@@ -74,14 +67,7 @@
         android:textSize="@dimen/text_size_large"
         android:layout_marginTop="30dp"/>
 
-    <TextView
-        android:id="@+id/col_about"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/about"
-        android:textSize="@dimen/text_size_large"
-        android:layout_marginTop="30dp"/>
+
 
 
 

@@ -8,5 +8,15 @@
         android:orderInCategory="100"
         android:title="选择订阅项目"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/search"
+        android:orderInCategory="100"
+        android:title="搜索新闻"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/about"
+        android:orderInCategory="100"
+        android:title="关于"
+        app:showAsAction="never" />
 
 </menu>
