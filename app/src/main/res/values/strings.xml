@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">蟹黄煲</string>
+    <string name="news">新闻</string>
+    <string name="paper">文章</string>
+    <string name="data">疫情数据</string>
+    <string name="graph">疫情图谱</string>
+    <string name="cluster">疫情新闻聚类</string>
+    <string name="scholar">知疫学者</string>
+    <string name="category">项目管理</string>
+    <string name="about">关于</string>
+    <string name="history">历史记录</string>
 </resources>

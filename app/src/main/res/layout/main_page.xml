@@ -3,7 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <include
+        layout="@layout/common_toolbar"/>
+    <com.jwenfeng.library.pulltorefresh.PullToRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/pull_to_refresh"
+        android:dividerHeight="1px"
+        android:divider="#FF1493"
+        android:background="#FFFFFF">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listview"
+            android:choiceMode="singleChoice"/>
 
-
+    </com.jwenfeng.library.pulltorefresh.PullToRefreshLayout>
 
 </LinearLayout>
