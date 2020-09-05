@@ -18,6 +18,19 @@ public class StatAPI {
     }
 
 
+    private static void makeStatReady() {
+        if (allStat == null) {
+            if (!requestThread.isAlive())
+                refreshStat();
+            try {
+                requestThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
     //API for frontend client
 
     public static void refreshStat() {
@@ -25,19 +38,12 @@ public class StatAPI {
     }
 
     public static ArrayList<EpidemicStat> getAllStat() {
-        if (allStat != null)
-            return new ArrayList<>(allStat);
-        if (!requestThread.isAlive())
-            refreshStat();
-        try {
-            requestThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        makeStatReady();
         return new ArrayList<>(allStat);
     }
 
     public static ArrayList<String> getAllCountries() {
+        makeStatReady();
         ArrayList<String> countries = new ArrayList<>();
         for (EpidemicStat stat : allStat) {
             if (stat.getProvince() == null)
@@ -47,6 +53,7 @@ public class StatAPI {
     }
 
     public static ArrayList<String> getProvincesByCountry(String country) {
+        makeStatReady();
         ArrayList<String> provinces = new ArrayList<>();
         for (EpidemicStat stat : allStat) {
             if (country.equals(stat.getCountry()) && stat.getCity() == null) {
@@ -57,6 +64,7 @@ public class StatAPI {
     }
 
     public static EpidemicStat getStatByCountry(String country) {
+        makeStatReady();
         for (EpidemicStat stat : allStat) {
             if (country.equals(stat.getCountry()) && stat.getProvince() == null) {
                 return stat;
@@ -66,6 +74,7 @@ public class StatAPI {
     }
 
     public static EpidemicStat getStatByProvince(String country, String province) {
+        makeStatReady();
         for (EpidemicStat stat : allStat) {
             if (country.equals(stat.getCountry()) && province.equals(stat.getProvince()) && stat.getCity() == null) {
                 return stat;
