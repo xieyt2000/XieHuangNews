@@ -1,5 +1,7 @@
 package com.java.xieyuntong.backend;
 
+import androidx.annotation.Nullable;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,13 +12,16 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 class RequestHandler {
 
     //construct URL string for "GET" method with parameters
-    static String constructURL(String urlStr, final Map<String, String> paraMap) {
+    static String constructURL(String urlStr, @Nullable final Map<String, String> paraMap) {
+        if (paraMap == null)
+            return urlStr;
         StringBuilder builder = new StringBuilder(urlStr + "?");
         for (Map.Entry<String, String> parameter : paraMap.entrySet()) {
             builder.append(parameter.getKey());
@@ -28,7 +33,7 @@ class RequestHandler {
     }
 
     //http "GET" return string
-    static String httpGet(String URLStr, final Map<String, String> parameters) {
+    static String httpGet(String URLStr, @Nullable final Map<String, String> parameters) {
         try {
             URL url = new URL(constructURL(URLStr, parameters));
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -66,5 +71,38 @@ class RequestHandler {
         return res;
     }
 
+    static ArrayList<EpidemicStat> requestStat() {
+        String statURL = "https://covid-dashboard.aminer.cn/api/dist/epidemic.json";
+        String jsonStr = httpGet(statURL, null);
+        ArrayList<EpidemicStat> res = new ArrayList<>();
+        try {
+            assert jsonStr != null;
+            JSONObject jsonMap = new JSONObject(jsonStr);
+            Iterator<String> keys = jsonMap.keys();
+            while (keys.hasNext()) {
+                String region = keys.next();
+                JSONObject jsonStat = jsonMap.getJSONObject(region);
+                String dateString = jsonStat.getString("begin");
+                JSONArray jsonDataArr = jsonStat.getJSONArray("data");
+                ArrayList<ArrayList<Integer>> figures = new ArrayList<>();
+                for (int i = 0; i < jsonDataArr.length(); i++) {
+                    JSONArray jsonFigure = jsonDataArr.getJSONArray(i);
+                    ArrayList<Integer> figureArr = new ArrayList<>();
+                    for (int j = 0; j < jsonFigure.length(); j++) {
+                        try {
+                            figureArr.add(Integer.valueOf(jsonFigure.getString(j)));
+                        } catch (NumberFormatException e) {
+                            figureArr.add(null);
+                        }
+                    }
+                    figures.add(figureArr);
+                }
+                res.add(new EpidemicStat(region, dateString, figures));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
 }
 
