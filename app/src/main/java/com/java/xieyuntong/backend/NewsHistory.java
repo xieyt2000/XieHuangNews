@@ -44,7 +44,7 @@ class NewsHistory {
             e.printStackTrace();
         }
         ArrayList<NewsPiece> res = new ArrayList<>();
-        for (int i = rdList.size() - 1; i > 0; i--) {
+        for (int i = rdList.size() - 1; i >= 0; i--) {
             NewsPiece news = rdList.get(i);
             if (!res.contains(news))
                 res.add(news);

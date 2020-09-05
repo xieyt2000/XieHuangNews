@@ -1,16 +1,18 @@
 package com.java.xieyuntong.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.java.xieyuntong.R;
+import com.mob.MobSDK;
+
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 public class NewsItemActivity extends AppCompatActivity {
     private String title;
@@ -63,10 +65,19 @@ public class NewsItemActivity extends AppCompatActivity {
         mShareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(NewsItemActivity.this, "fuck", Toast.LENGTH_SHORT).show();
+                OnekeyShare oks = new OnekeyShare();
+                oks.setTitle(title);
+// titleUrl QQ和QQ空间跳转链接
+//                oks.setTitleUrl("https://github.com/xieyt2000/XieHuangNews");
+                oks.setText(content);
+// setImageUrl是网络图片的url
+                oks.setImageUrl("https://hmls.hfbank.com.cn/hfapp-api/9.png");
+// url在微信、Facebook等平台中使用
+//                oks.setUrl("https://github.com/xieyt2000/XieHuangNews");
+// 启动分享GUI
+                oks.show(MobSDK.getContext());
             }
         });
 
     }
-
 }
