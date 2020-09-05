@@ -7,6 +7,12 @@ public class NewsAPI {
     static private ArrayList<ArrayList<NewsPiece>> newsPagesList = new ArrayList<>();
     static private int size = 20;
     static private NewsPiece.NewsType type = NewsPiece.NewsType.NEWS;
+    static private ArrayList<NewsPiece> localHistory = new ArrayList<>();    //load when reset
+
+
+    // hidden constructor
+    private NewsAPI() {
+    }
 
 
     //API for frontend client
@@ -20,6 +26,10 @@ public class NewsAPI {
             @Override
             public void run() {
                 newsPagesList.add(RequestHandler.requestNews(type, newsPagesList.size() + 1, size));
+                for (NewsPiece news : newsPagesList.get(newsPagesList.size() - 1)) {
+                    if (localHistory.contains(news))
+                        news.read();
+                }
             }
         });
         netThread.start();
@@ -41,7 +51,7 @@ public class NewsAPI {
         ArrayList<NewsPiece> res = new ArrayList<>();
         for (ArrayList<NewsPiece> newsPage : newsPagesList) {
             for (NewsPiece newsPiece : newsPage) {
-                if (newsPiece.getTitle().contains(query) || newsPiece.getContent().contains(query))
+                if (newsPiece.getTitle().contains(query))
                     res.add(newsPiece);
             }
         }
@@ -56,6 +66,7 @@ public class NewsAPI {
 
     static public void reset() {
         newsPagesList.clear();
+        localHistory = NewsHistory.readHistory();
     }
 
     static public void setType(NewsPiece.NewsType type) {

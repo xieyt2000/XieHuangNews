@@ -1,5 +1,7 @@
 package com.java.xieyuntong.backend;
 
+import android.util.Log;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -11,8 +13,15 @@ class NewsHistory {
 
     static File HistoryFile;
 
+
+    //hidden constructor
+    private NewsHistory() {
+    }
+
+
     static void clear() {
-        HistoryFile.delete();
+        boolean res = HistoryFile.delete();
+        if (!res) Log.i("error", "delete fail");
     }
 
     static void saveNews(NewsPiece news) {

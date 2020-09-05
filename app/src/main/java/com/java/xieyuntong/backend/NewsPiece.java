@@ -4,7 +4,14 @@ import androidx.annotation.NonNull;
 
 
 public class NewsPiece {
+
+    // class variables
     private final String ID;   //ID from aminer
+
+    //setter
+    void read() {
+        haveRead = true;
+    }
 
     private final NewsType type;
     private final String time;
@@ -12,6 +19,7 @@ public class NewsPiece {
     private final String title;
     private final String content;
     private boolean haveRead = false;
+
 
     //constructor
     NewsPiece(NewsType type, String time, String source, String title, String content, String ID) {
@@ -23,7 +31,6 @@ public class NewsPiece {
         this.ID = ID;
     }
 
-
     NewsPiece(String str) {
         String[] strList = str.split("###");
         this.type = NewsType.fromString(strList[0]);
@@ -33,6 +40,7 @@ public class NewsPiece {
         this.content = strList[4];
         this.ID = strList[5];
     }
+
 
     //basic override method
     @NonNull
@@ -48,23 +56,15 @@ public class NewsPiece {
         return cmpNews.ID.equals(this.ID);
     }
 
-    void read() {
-        haveRead = true;
+    String getID() {
+        return ID;
     }
-
-
-    // method to change news status
 
     void resetRead() {
         haveRead = false;
     }
 
-    String getID() {
-        return ID;
-    }
-
-
-    // method to access class variables
+    // getter
 
     public NewsType getType() {
         return type;
@@ -90,7 +90,6 @@ public class NewsPiece {
         return haveRead;
     }
 
-    // class variables
     public enum NewsType {
         NEWS("news"), PAPER("paper");
         private final String text;
@@ -99,15 +98,15 @@ public class NewsPiece {
             this.text = text;
         }
 
+        static public NewsType fromString(String str) {
+            if (str.equals("news")) return NEWS;
+            else return PAPER;
+        }
+
         @NonNull
         @Override
         public String toString() {
             return text;
-        }
-
-        static public NewsType fromString(String str) {
-            if (str.equals("news")) return NEWS;
-            else return PAPER;
         }
     }
 }
