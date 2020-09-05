@@ -14,6 +14,7 @@
             android:theme="@style/AppTheme">
         <activity android:name=".ui.NewsItemActicity" />
         <activity android:name=".ui.CategoryManageActivity" />
+        <activity android:name=".data.EpidemicDataActivity"/>
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

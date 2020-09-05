@@ -31,6 +31,8 @@ import com.java.xieyuntong.R;
 import com.java.xieyuntong.backend.BackEnd;
 import com.java.xieyuntong.backend.NewsAPI;
 import com.java.xieyuntong.backend.NewsPiece;
+import com.java.xieyuntong.backend.StatAPI;
+import com.java.xieyuntong.data.EpidemicDataActivity;
 import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
 import com.jwenfeng.library.pulltorefresh.PullToRefreshLayout;
 
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BackEnd.initialize(this);
+        StatAPI.refreshStat();
         setState("1111111");
         curState = 0;
         newsList = new ArrayList<NewsPiece>();
@@ -116,6 +119,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        int prevSelection = listView.getFirstVisiblePosition();//获取第一个可见view的位置
+        View firstChild = listView.getChildAt(0);//获取listview中第一个view
+        int prevFromTop = 0;
+        if(firstChild != null) {//判空很重要
+            prevFromTop = firstChild.getTop();//获取listview中顶部view距离顶部的距离
+        }
         NewsPiece newsPiece = newsList.get(position);
         NewsAPI.read(newsPiece);
         Bundle bundle = new Bundle();
@@ -131,6 +140,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             refreshMain();
         }
         showNewsList();
+
+        listView.setSelectionFromTop(prevSelection, prevFromTop);//回到原位置
 
     }
 
@@ -158,6 +169,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     }
                 });
             } else if (id == R.id.col_data) {//疫情数据
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(MainActivity.this, EpidemicDataActivity.class);
+                        startActivity(intent);
+                    }
+                });
 
             } else if (id == R.id.col_graph) {//疫情图谱
 
@@ -224,6 +242,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                             mPullToRefreshLayout.finishLoadMore();
                             return;
                         }
+                        if (curState == 7) {
+                            Toast.makeText(MainActivity.this, "无更多搜索记录", Toast.LENGTH_SHORT).show();
+                            mPullToRefreshLayout.finishLoadMore();
+                            return;
+                        }
                         if (!NetworkAvail.check(MainActivity.this)) {
                             Log.i("network", "no");
                             Toast.makeText(MainActivity.this, "无网络连接", Toast.LENGTH_SHORT).show();
@@ -239,7 +262,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         showNewsList();
 
                         Toast.makeText(MainActivity.this, "成功获取更多新闻", Toast.LENGTH_SHORT).show();
-                        listView.setSelection(oldSize - 5);
+                        listView.setSelection(oldSize - 4);
                         mPullToRefreshLayout.finishLoadMore();
                     }
                 }, 500);
@@ -305,6 +328,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         } else if (id == R.id.delete) {//删除
             NewsAPI.clearHistory();
             Toast.makeText(this, "成功清空", Toast.LENGTH_SHORT).show();
+            refreshMain();//刷新
         } else {
 
         }
@@ -315,7 +339,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         final EditText editText = new EditText(MainActivity.this);
         AlertDialog.Builder inputDialog =
                 new AlertDialog.Builder(MainActivity.this);
-        inputDialog.setTitle("在该页面搜索：").setView(editText);
+        inputDialog.setTitle("搜索新闻：").setView(editText);
         inputDialog.setPositiveButton("确定",
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -323,9 +347,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         String s = editText.getText().toString();
                         newsList = NewsAPI.search(s);
                         showNewsList();
-                        Toast.makeText(MainActivity.this, "已为您搜索关键字\"" + s + "\"\n上拉即可恢复", Toast.LENGTH_SHORT);
+                        Toast.makeText(MainActivity.this, "已为您搜索关键字\"" + s + "\"\n上拉即可恢复", Toast.LENGTH_SHORT).show();
 //                        feed.setSearch("");
                     }
                 }).show();
+        curState = 7;//搜索
     }
 }

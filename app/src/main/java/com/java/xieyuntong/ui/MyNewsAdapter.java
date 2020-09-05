@@ -2,6 +2,8 @@ package com.java.xieyuntong.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,25 +50,29 @@ public class MyNewsAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.textView1 = view.findViewById(R.id.text1);
             holder.textView2 = view.findViewById(R.id.text2);
+            //holder.textView3 = view.findViewById(R.id.text3);
             holder.linearLayout = view.findViewById(R.id.news_list_linearlayout);
             view.setTag(holder);
         }else{
             holder = (ViewHolder)view.getTag();
         }
+        Log.i("news",String.valueOf(i));
         holder.textView1.setText(newsPieceArrayList.get(i).getTitle());
         holder.textView2.setText(newsPieceArrayList.get(i).getTime());
-        if(newsPieceArrayList.get(i).getHaveRead()) {
-            holder.linearLayout.setBackgroundColor(R.color.ReadNews);
+        //holder.textView3.setText(newsPieceArrayList.get(i).getContent());
+        if(newsPieceArrayList.get(i).getHaveRead()) {//设置灰色
+            Log.i("已读",String.valueOf(i));
+            holder.linearLayout.setBackgroundColor(Color.GRAY);
+        }else{
+            holder.linearLayout.setBackgroundColor(Color.WHITE);
         }
-//        }else{
-//            holder.linearLayout.setBackgroundColor(R.color.ReadNews);
-//        }
 
         return view;
     }
     class ViewHolder{
         TextView textView1;
         TextView textView2;
+        //TextView textView3;
         LinearLayout linearLayout;
     }
 }
