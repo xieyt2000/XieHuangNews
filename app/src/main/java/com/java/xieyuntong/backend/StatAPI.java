@@ -56,7 +56,7 @@ public class StatAPI {
         makeStatReady();
         ArrayList<String> provinces = new ArrayList<>();
         for (EpidemicStat stat : allStat) {
-            if (country.equals(stat.getCountry()) && stat.getCity() == null) {
+            if (country.equals(stat.getCountry()) && stat.getProvince() != null && stat.getCity() == null) {
                 provinces.add(stat.getProvince());
             }
         }
