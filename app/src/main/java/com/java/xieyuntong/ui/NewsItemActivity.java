@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.java.xieyuntong.R;
 
-public class NewsItemActicity extends AppCompatActivity {
+public class NewsItemActivity extends AppCompatActivity {
     private String title;
     private String content;
     private String type;
@@ -63,7 +63,7 @@ public class NewsItemActicity extends AppCompatActivity {
         mShareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(NewsItemActicity.this, "fuck", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewsItemActivity.this, "fuck", Toast.LENGTH_SHORT).show();
             }
         });
 

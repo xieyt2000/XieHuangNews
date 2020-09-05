@@ -12,7 +12,7 @@
             android:roundIcon="@mipmap/burger_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".ui.NewsItemActicity" />
+        <activity android:name=".ui.NewsItemActivity" />
         <activity android:name=".ui.CategoryManageActivity" />
         <activity android:name=".data.EpidemicDataActivity"/>
         <activity android:name=".ui.MainActivity">
