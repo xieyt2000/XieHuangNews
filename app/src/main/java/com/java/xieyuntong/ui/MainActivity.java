@@ -1,10 +1,5 @@
 package com.java.xieyuntong.ui;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,6 +17,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.java.xieyuntong.R;
 import com.java.xieyuntong.backend.BackEnd;
 import com.java.xieyuntong.backend.NewsAPI;
@@ -30,6 +30,7 @@ import com.java.xieyuntong.backend.StatAPI;
 import com.java.xieyuntong.data.EpidemicDataActivity;
 import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
 import com.jwenfeng.library.pulltorefresh.PullToRefreshLayout;
+import com.mob.MobSDK;
 
 import java.util.ArrayList;
 
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MobSDK.submitPolicyGrantResult(true, null);
         BackEnd.initialize(this);
         StatAPI.refreshStat();
         setState("1111111");
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         int prevSelection = listView.getFirstVisiblePosition();//获取第一个可见view的位置
         View firstChild = listView.getChildAt(0);//获取listview中第一个view
         int prevFromTop = 0;
-        if(firstChild != null) {//判空很重要
+        if (firstChild != null) {//判空很重要
             prevFromTop = firstChild.getTop();//获取listview中顶部view距离顶部的距离
         }
         NewsPiece newsPiece = newsList.get(position);

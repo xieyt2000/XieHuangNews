@@ -77,11 +77,11 @@ public class NewsPiece {
 
     //setter
 
-    void read() {
+    public void read() {
         haveRead = true;
     }
 
-    void resetRead() {
+    public void resetRead() {
         haveRead = false;
     }
 
