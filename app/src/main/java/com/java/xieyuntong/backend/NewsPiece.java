@@ -5,14 +5,30 @@ import androidx.annotation.NonNull;
 
 public class NewsPiece {
 
-    // class variables
-    private final String ID;   //ID from aminer
+    public enum NewsType {
+        NEWS("news"), PAPER("paper");
+        private final String text;
 
-    //setter
-    void read() {
-        haveRead = true;
+        NewsType(String text) {
+            this.text = text;
+        }
+
+        static public NewsType fromString(String str) {
+            if (str.equals("news")) return NEWS;
+            else return PAPER;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return text;
+        }
     }
 
+
+    // class variables
+
+    private final String ID;   //ID from aminer
     private final NewsType type;
     private final String time;
     private final String source;
@@ -22,6 +38,7 @@ public class NewsPiece {
 
 
     //constructor
+
     NewsPiece(NewsType type, String time, String source, String title, String content, String ID) {
         this.type = type;
         this.time = time;
@@ -43,6 +60,7 @@ public class NewsPiece {
 
 
     //basic override method
+
     @NonNull
     @Override
     public String toString() {
@@ -56,15 +74,23 @@ public class NewsPiece {
         return cmpNews.ID.equals(this.ID);
     }
 
-    String getID() {
-        return ID;
+
+    //setter
+
+    void read() {
+        haveRead = true;
     }
 
     void resetRead() {
         haveRead = false;
     }
 
+
     // getter
+
+    String getID() {
+        return ID;
+    }
 
     public NewsType getType() {
         return type;
@@ -88,25 +114,5 @@ public class NewsPiece {
 
     public boolean getHaveRead() {
         return haveRead;
-    }
-
-    public enum NewsType {
-        NEWS("news"), PAPER("paper");
-        private final String text;
-
-        NewsType(String text) {
-            this.text = text;
-        }
-
-        static public NewsType fromString(String str) {
-            if (str.equals("news")) return NEWS;
-            else return PAPER;
-        }
-
-        @NonNull
-        @Override
-        public String toString() {
-            return text;
-        }
     }
 }
