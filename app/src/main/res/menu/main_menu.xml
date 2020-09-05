@@ -14,6 +14,11 @@
         android:title="搜索新闻"
         app:showAsAction="never" />
     <item
+        android:id="@+id/delete"
+        android:orderInCategory="100"
+        android:title="清空历史记录及缓存"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/about"
         android:orderInCategory="100"
         android:title="关于"

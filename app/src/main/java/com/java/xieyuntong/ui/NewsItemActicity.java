@@ -1,10 +1,14 @@
 package com.java.xieyuntong.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.java.xieyuntong.R;
 
@@ -18,6 +22,8 @@ public class NewsItemActicity extends AppCompatActivity {
     private TextView textView_content;
     private TextView textView_source;
     private TextView textView_time;
+    private Toolbar mToolbar;
+    private ImageButton mShareButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,24 @@ public class NewsItemActicity extends AppCompatActivity {
         textView_content.setText(content);
         textView_source.setText("来源："+source);
         textView_time.setText("发布时间："+time);
+        mToolbar = findViewById(R.id.news_toolbar);
+        mToolbar.setTitle("新闻");
+        setSupportActionBar(mToolbar);
+        mToolbar.setNavigationIcon(R.drawable.back);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        mShareButton = findViewById(R.id.share_button);
+        mShareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(NewsItemActicity.this, "fuck", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 }

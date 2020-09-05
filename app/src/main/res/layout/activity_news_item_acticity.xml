@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".ui.NewsItemActicity">
 
-    <include layout="@layout/common_toolbar" />
+    <include layout="@layout/news_toolbar" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
