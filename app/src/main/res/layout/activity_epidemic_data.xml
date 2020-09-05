@@ -11,48 +11,101 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:orientation="vertical">
+
             <TextView
-                android:layout_width="match_parent"
                 android:id="@+id/text_country"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="选择国家"
-                android:textSize="@dimen/text_size_normal"/>
+                android:textSize="@dimen/text_size_normal" />
+
             <Spinner
                 android:id="@+id/spinner_country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_country"
-                android:layout_alignStart="@id/text_country"/>
+                android:layout_alignStart="@id/text_country" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:orientation="vertical">
+
             <TextView
-                android:layout_width="match_parent"
                 android:id="@+id/text_province"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="选择省份"
-                android:textSize="@dimen/text_size_normal"/>
+                android:textSize="@dimen/text_size_normal" />
+
             <Spinner
                 android:id="@+id/spinner_province"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_province"
-                android:layout_alignStart="@id/text_province"/>
+                android:layout_alignStart="@id/text_province" />
         </RelativeLayout>
+
         <TextView
+            android:id="@+id/country_province_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/country_province_text"/>
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_size_normal" />
 
     </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/bar_chart_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/bar_chart_suspected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/bar_chart_cured"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/bar_chart_dead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/bar_chart_severe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/bar_chart_risk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/bar_chart_inc24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
