@@ -76,6 +76,9 @@ public class NewsAPI {
         reset();
         NewsAPI.type = type;
     }
+    static public NewsPiece.NewsType getType(){
+        return NewsAPI.type;
+    }
 
     static public ArrayList<NewsPiece> refresh() {
         reset();

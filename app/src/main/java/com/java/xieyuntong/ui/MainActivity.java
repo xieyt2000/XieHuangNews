@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         if (newsList.size() == 0) {
             Toast.makeText(this, "无新闻", Toast.LENGTH_SHORT).show();
-            return;
         }
 //        List<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
 //        for(NewsPiece newsPiece : newsList){
@@ -120,17 +119,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (firstChild != null) {//判空很重要
             prevFromTop = firstChild.getTop();//获取listview中顶部view距离顶部的距离
         }
-        NewsPiece newsPiece = newsList.get(position);
-        NewsAPI.read(newsPiece);
-        Bundle bundle = new Bundle();
-        bundle.putString("type", newsPiece.getType().toString());
-        bundle.putString("time", newsPiece.getTime());
-        bundle.putString("source", newsPiece.getSource());
-        bundle.putString("content", newsPiece.getContent());
-        bundle.putString("title", newsPiece.getTitle());
-        Intent intent = new Intent(MainActivity.this, NewsItemActivity.class);
-        intent.putExtras(bundle);
-        startActivity(intent);
+        try{
+            NewsPiece newsPiece = newsList.get(position);
+            NewsAPI.read(newsPiece);
+            Bundle bundle = new Bundle();
+            bundle.putString("type", newsPiece.getType().toString());
+            bundle.putString("time", newsPiece.getTime());
+            bundle.putString("source", newsPiece.getSource());
+            bundle.putString("content", newsPiece.getContent());
+            bundle.putString("title", newsPiece.getTitle());
+            Intent intent = new Intent(MainActivity.this, NewsItemActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         if (curState == 6) {
             refreshMain();
         }
@@ -161,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                             curState = 6;
                         }
                         refreshMain();
+                        mDrawerLayout.closeDrawer(Gravity.LEFT);
                     }
                 });
             } else if (id == R.id.col_data) {//疫情数据
@@ -169,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     public void onClick(View view) {
                         Intent intent = new Intent(MainActivity.this, EpidemicDataActivity.class);
                         startActivity(intent);
+                        mDrawerLayout.closeDrawer(Gravity.LEFT);
                     }
                 });
 
@@ -219,6 +225,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         }
 
                         newsList = NewsAPI.refresh();
+                        NewsPiece.NewsType newsType = NewsAPI.getType();
+                        if(newsType == NewsPiece.NewsType.NEWS){
+                            curState = 0;
+                        }else{
+                            curState = 1;
+                        }
                         showNewsList();
                         Toast.makeText(MainActivity.this, "刷新成功", Toast.LENGTH_SHORT).show();
                         mPullToRefreshLayout.finishRefresh();
@@ -321,9 +333,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             searchContent();
 
         } else if (id == R.id.delete) {//删除
-            NewsAPI.clearHistory();
             Toast.makeText(this, "成功清空", Toast.LENGTH_SHORT).show();
-            refreshMain();//刷新
+            //refreshMain();//刷新
+            NewsAPI.clearHistory();
+            for(NewsPiece newsPiece:newsList){
+                newsPiece.resetRead();
+            }
+            int prevSelection = listView.getFirstVisiblePosition();//获取第一个可见view的位置
+            View firstChild = listView.getChildAt(0);//获取listview中第一个view
+            int prevFromTop = 0;
+            if (firstChild != null) {//判空很重要
+                prevFromTop = firstChild.getTop();//获取listview中顶部view距离顶部的距离
+            }
+            showNewsList();
+            listView.setSelectionFromTop(prevSelection, prevFromTop);//回到原位置
         } else {
 
         }

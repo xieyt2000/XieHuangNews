@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <array name="type">
+        <item>confirmed</item>
+        <item>suspected</item>
+        <item>cured</item>
+        <item>dead</item>
+        <item>severe</item>
+        <item>risk</item>
+        <item>inc24</item>
+    </array>
 
 </resources>

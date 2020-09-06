@@ -36,7 +36,7 @@ public class EpidemicStat {
     private final String province;
     private final String city;
     private final Date beginDate;
-    private final ArrayList<Figure> figures;
+    private ArrayList<Figure> figures = null;
 
 
     // constructor
@@ -89,6 +89,10 @@ public class EpidemicStat {
 
     public Date getBeginDate() {
         return beginDate;
+    }
+
+    public ArrayList<Figure> getFigures(){
+        return this.figures;
     }
 
 }
