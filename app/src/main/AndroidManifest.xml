@@ -12,12 +12,11 @@
         android:roundIcon="@mipmap/burger_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.EpidemicGraphActivity"></activity>
+        <activity android:name=".ui.EpidemicGraphActivity" />
         <activity
             android:name=".ui.CategorySettingActivity"
             android:label="@string/title_activity_category_setting" />
         <activity android:name=".ui.NewsItemActivity" />
-        <activity android:name=".ui.CategoryManageActivity" />
         <activity android:name=".data.EpidemicDataActivity" />
         <activity android:name=".ui.MainActivity">
             <intent-filter>

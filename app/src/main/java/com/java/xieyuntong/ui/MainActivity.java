@@ -313,7 +313,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setOneCol(categoryPref, "graph", R.id.col_graph);
         setOneCol(categoryPref, "cluster", R.id.col_cluster);
         setOneCol(categoryPref, "scholar", R.id.col_scholar);
-        setOneCol(categoryPref, "history", R.id.col_history);
     }
 
     @Override

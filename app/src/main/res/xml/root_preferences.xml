@@ -26,10 +26,6 @@
                 app:key="scholar"
                 app:title="@string/scholar" />
 
-        <SwitchPreferenceCompat
-                app:key="history"
-                app:title="@string/history" />
-
     </PreferenceCategory>
 
 </PreferenceScreen>

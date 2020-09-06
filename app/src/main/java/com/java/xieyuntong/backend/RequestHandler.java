@@ -2,6 +2,8 @@ package com.java.xieyuntong.backend;
 
 import androidx.annotation.Nullable;
 
+import com.java.xieyuntong.backend.kg.Entity;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,13 +12,19 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-class RequestHandler {
+public class RequestHandler {
+
+    // constants
+    static final String NEWS_URL_STR = "https://covid-dashboard.aminer.cn/api/events/list";
+    static final String STAT_URL_STR = "https://covid-dashboard.aminer.cn/api/dist/epidemic.json";
+    static final String GRAPH_URL_STR = "https://innovaapi.aminer.cn/covid/api/v1/pneumonia/entityquery";
 
     //construct URL string for "GET" method with parameters
     static String constructURL(String urlStr, @Nullable final Map<String, String> paraMap) {
@@ -52,8 +60,7 @@ class RequestHandler {
         para.put("type", type.toString());
         para.put("page", Integer.toString(page));
         para.put("size", Integer.toString(size));
-        String newsURLStr = "https://covid-dashboard.aminer.cn/api/events/list";
-        String jsonStr = httpGet(newsURLStr, para);
+        String jsonStr = httpGet(NEWS_URL_STR, para);
         ArrayList<NewsPiece> res = new ArrayList<>();
         try {
             assert jsonStr != null;
@@ -72,8 +79,7 @@ class RequestHandler {
     }
 
     static ArrayList<EpidemicStat> requestStat() {
-        String statURL = "https://covid-dashboard.aminer.cn/api/dist/epidemic.json";
-        String jsonStr = httpGet(statURL, null);
+        String jsonStr = httpGet(STAT_URL_STR, null);
         ArrayList<EpidemicStat> res = new ArrayList<>();
         try {
             assert jsonStr != null;
@@ -103,6 +109,23 @@ class RequestHandler {
             e.printStackTrace();
         }
         return res;
+    }
+
+    public static Entity requestGraphEntry(String query) {
+        LinkedHashMap<String, String> para = new LinkedHashMap<>();
+        para.put("entity", query);
+        String jsonStr = httpGet(GRAPH_URL_STR, para);
+        try {
+            assert jsonStr != null;
+            JSONObject jsonEntity = new JSONObject(jsonStr).
+                    getJSONArray("data").getJSONObject(0);
+            String label = jsonEntity.getString("label");
+            URL imgURL = new URL(jsonEntity.getString("img"));
+
+        } catch (JSONException | MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
 

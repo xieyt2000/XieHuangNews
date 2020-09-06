@@ -36,7 +36,7 @@ public class EpidemicStat {
     private final String province;
     private final String city;
     private final Date beginDate;
-    private ArrayList<Figure> figures = null;
+    final private ArrayList<Figure> figures;
 
 
     // constructor
