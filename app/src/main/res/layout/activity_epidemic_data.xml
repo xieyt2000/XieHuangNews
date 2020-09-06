@@ -90,6 +90,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:id="@+id/graph_text"
+            android:text="无记录数据"
+            android:textSize="@dimen/text_size_normal"/>
+
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/linechart"
             android:layout_width="match_parent"

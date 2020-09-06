@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (firstChild != null) {//判空很重要
             prevFromTop = firstChild.getTop();//获取listview中顶部view距离顶部的距离
         }
-        try{
+        try {
             NewsPiece newsPiece = newsList.get(position);
             NewsAPI.read(newsPiece);
             Bundle bundle = new Bundle();
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Intent intent = new Intent(MainActivity.this, NewsItemActivity.class);
             intent.putExtras(bundle);
             startActivity(intent);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -226,9 +226,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                         newsList = NewsAPI.refresh();
                         NewsPiece.NewsType newsType = NewsAPI.getType();
-                        if(newsType == NewsPiece.NewsType.NEWS){
+                        if (newsType == NewsPiece.NewsType.NEWS) {
                             curState = 0;
-                        }else{
+                        } else {
                             curState = 1;
                         }
                         showNewsList();
@@ -336,7 +336,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Toast.makeText(this, "成功清空", Toast.LENGTH_SHORT).show();
             //refreshMain();//刷新
             NewsAPI.clearHistory();
-            for(NewsPiece newsPiece:newsList){
+            for (NewsPiece newsPiece : newsList) {
                 newsPiece.resetRead();
             }
             int prevSelection = listView.getFirstVisiblePosition();//获取第一个可见view的位置
