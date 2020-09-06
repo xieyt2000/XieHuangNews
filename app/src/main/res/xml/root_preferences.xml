@@ -1,0 +1,42 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory>
+
+        <SwitchPreferenceCompat
+                app:key="news"
+                app:title="@string/news" />
+
+        <SwitchPreferenceCompat
+                app:key="paper"
+                app:title="@string/paper" />
+
+        <SwitchPreferenceCompat
+                app:key="statistics"
+                app:title="@string/data" />
+
+        <SwitchPreferenceCompat
+                app:key="graph"
+                app:title="@string/graph" />
+
+        <SwitchPreferenceCompat
+                app:key="cluster"
+                app:title="@string/cluster" />
+
+        <SwitchPreferenceCompat
+                app:key="scholar"
+                app:title="@string/scholar" />
+
+        <SwitchPreferenceCompat
+                app:key="history"
+                app:title="@string/history" />
+
+        <!--        <SwitchPreferenceCompat-->
+        <!--                app:dependency="sync"-->
+        <!--                app:key="attachment"-->
+        <!--                app:summaryOff="@string/attachment_summary_off"-->
+        <!--                app:summaryOn="@string/attachment_summary_on"-->
+        <!--                app:title="@string/attachment_title" />-->
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

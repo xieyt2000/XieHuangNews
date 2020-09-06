@@ -91,7 +91,7 @@ public class EpidemicStat {
         return beginDate;
     }
 
-    public ArrayList<Figure> getFigures(){
+    public ArrayList<Figure> getFigures() {
         return this.figures;
     }
 

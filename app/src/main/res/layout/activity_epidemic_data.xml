@@ -1,113 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".data.EpidemicDataActivity">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".data.EpidemicDataActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
             <TextView
-                android:id="@+id/text_country"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="选择国家"
-                android:textSize="@dimen/text_size_normal" />
+                    android:id="@+id/text_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="选择国家"
+                    android:textSize="@dimen/text_size_normal" />
 
             <Spinner
-                android:id="@+id/spinner_country"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/text_country"
-                android:layout_alignStart="@id/text_country" />
+                    android:id="@+id/spinner_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text_country"
+                    android:layout_alignStart="@id/text_country" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
             <TextView
-                android:id="@+id/text_province"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="选择省份"
-                android:textSize="@dimen/text_size_normal" />
+                    android:id="@+id/text_province"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="选择省份"
+                    android:textSize="@dimen/text_size_normal" />
 
             <Spinner
-                android:id="@+id/spinner_province"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/text_province"
-                android:layout_alignStart="@id/text_province" />
+                    android:id="@+id/spinner_province"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text_province"
+                    android:layout_alignStart="@id/text_province" />
         </RelativeLayout>
+
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
             <TextView
-                android:id="@+id/text_type"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="选择类型"
-                android:textSize="@dimen/text_size_normal" />
+                    android:id="@+id/text_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="选择类型"
+                    android:textSize="@dimen/text_size_normal" />
 
             <Spinner
-                android:id="@+id/spinner_type"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/text_type"
-                android:entries="@array/type"
-                android:layout_alignStart="@id/text_type" />
+                    android:id="@+id/spinner_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text_type"
+                    android:entries="@array/type"
+                    android:layout_alignStart="@id/text_type" />
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/country_province_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:textSize="@dimen/text_size_normal" />
+                android:id="@+id/country_province_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/text_size_normal" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:id="@+id/graph_text"
-            android:text="无记录数据"
-            android:textSize="@dimen/text_size_normal"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:id="@+id/graph_text"
+                android:text="无记录数据"
+                android:textSize="@dimen/text_size_normal" />
 
         <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/linechart"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp" />
-
-
+                android:id="@+id/linechart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp" />
 
 
     </LinearLayout>

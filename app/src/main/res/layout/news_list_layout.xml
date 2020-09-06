@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
-    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:id="@+id/news_list_linearlayout"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-    <TextView android:id="@+id/text1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="@dimen/text_size_normal"
-        android:textAppearance="?attr/textAppearanceListItem" />
-        <TextView android:id="@+id/text3"
+
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="@dimen/text_size_normal"
-            android:textAppearance="?attr/textAppearanceListItemSecondary" />
-    <TextView android:id="@id/text2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text1"
-        android:layout_alignStart="@id/text1"
-        android:textSize="@dimen/text_size_normal"
-        android:textAppearance="?attr/textAppearanceListItemSecondary" />
+            android:layout_height="120dp"
+            android:id="@+id/news_list_linearlayout"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="@dimen/text_size_normal"
+                android:textAppearance="?attr/textAppearanceListItem" />
+
+        <TextView
+                android:id="@+id/text3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="@dimen/text_size_normal"
+                android:textAppearance="?attr/textAppearanceListItemSecondary" />
+
+        <TextView
+                android:id="@id/text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text1"
+                android:layout_alignStart="@id/text1"
+                android:textSize="@dimen/text_size_normal"
+                android:textAppearance="?attr/textAppearanceListItemSecondary" />
     </LinearLayout>
 </LinearLayout>

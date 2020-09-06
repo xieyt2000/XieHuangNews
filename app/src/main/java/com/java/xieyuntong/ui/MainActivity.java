@@ -328,7 +328,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.category_chosen) {//管理订阅项目
-
+            Intent outIntent = new Intent(this, CategorySettingActivity.class);
+            Bundle outBundle = new Bundle();
+            outBundle.putString("curState", state);
+            outIntent.putExtras(outBundle);
+            startActivityForResult(outIntent, 11);
         } else if (id == R.id.search) {//搜索
             searchContent();
 

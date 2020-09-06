@@ -1,74 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:clickable="true"
-    style="@style/Theme.AppCompat.Light.DarkActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:clickable="true"
+        style="@style/Theme.AppCompat.Light.DarkActionBar"
 
-    >
-    <TextView
-        android:id="@+id/col_news"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/news"
-        android:textSize="@dimen/text_size_large"
-        android:layout_marginTop="100dp"/>
-    <TextView
-        android:id="@+id/col_paper"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/paper"
-        android:textSize="@dimen/text_size_large"
-        android:layout_marginTop="30dp"/>
+        >
 
     <TextView
-        android:id="@+id/col_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/data"
-        android:textSize="@dimen/text_size_large"
-        android:layout_marginTop="30dp"/>
-    <TextView
-        android:id="@+id/col_graph"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/graph"
-        android:textSize="@dimen/text_size_large"
-        android:layout_marginTop="30dp"/>
-    <TextView
-        android:id="@+id/col_cluster"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/cluster"
-        android:textSize="@dimen/text_size_large"
-        android:layout_marginTop="30dp"/>
-    <TextView
-        android:id="@+id/col_scholar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/scholar"
-        android:textSize="@dimen/text_size_large"
-        android:layout_marginTop="30dp"/>
+            android:id="@+id/col_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/news"
+            android:textSize="@dimen/text_size_large"
+            android:layout_marginTop="100dp" />
 
     <TextView
-        android:id="@+id/col_history"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/history"
-        android:textSize="@dimen/text_size_large"
-        android:layout_marginTop="30dp"/>
+            android:id="@+id/col_paper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/paper"
+            android:textSize="@dimen/text_size_large"
+            android:layout_marginTop="30dp" />
 
+    <TextView
+            android:id="@+id/col_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/data"
+            android:textSize="@dimen/text_size_large"
+            android:layout_marginTop="30dp" />
 
+    <TextView
+            android:id="@+id/col_graph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/graph"
+            android:textSize="@dimen/text_size_large"
+            android:layout_marginTop="30dp" />
 
+    <TextView
+            android:id="@+id/col_cluster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/cluster"
+            android:textSize="@dimen/text_size_large"
+            android:layout_marginTop="30dp" />
+
+    <TextView
+            android:id="@+id/col_scholar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/scholar"
+            android:textSize="@dimen/text_size_large"
+            android:layout_marginTop="30dp" />
+
+    <TextView
+            android:id="@+id/col_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/history"
+            android:textSize="@dimen/text_size_large"
+            android:layout_marginTop="30dp" />
 
 
 </LinearLayout>

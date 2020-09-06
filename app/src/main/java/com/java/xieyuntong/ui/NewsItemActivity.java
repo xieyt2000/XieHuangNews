@@ -49,8 +49,8 @@ public class NewsItemActivity extends AppCompatActivity {
         textView_time = findViewById(R.id.news_time);
         textView_title.setText(title);
         textView_content.setText(content);
-        textView_source.setText("来源："+source);
-        textView_time.setText("发布时间："+time);
+        textView_source.setText("来源：" + source);
+        textView_time.setText("发布时间：" + time);
         mToolbar = findViewById(R.id.news_toolbar);
         mToolbar.setTitle("新闻");
         setSupportActionBar(mToolbar);
