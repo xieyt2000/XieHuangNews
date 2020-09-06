@@ -3,6 +3,7 @@ package com.java.xieyuntong.ui;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -36,8 +38,7 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    private String state = "1111111";// news paper data graph cluster scholar
-    private boolean[] visible = {true, true, true, true, true, true, true};  //表示要显示的项目
+    //    private boolean[] visible = {true, true, true, true, true, true, true};  //表示要显示的项目
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
     private ImageButton searchButton;
@@ -51,15 +52,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ListView listView;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setState();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MobSDK.submitPolicyGrantResult(true, null);
         BackEnd.initialize(this);
         StatAPI.refreshStat();
-        setState("1111111");
+        setState();
         curState = 0;
-        newsList = new ArrayList<NewsPiece>();
+        newsList = new ArrayList<>();
         initColumns();
         initViews();
         refreshMain();
@@ -147,8 +154,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private void initColumns() {
         int id;
         TextView textView;
-        for (int i = 0; i < colId.length; i++) {
-            id = colId[i];
+        for (int value : colId) {
+            id = value;
             textView = findViewById(id);
             if (id == R.id.col_news || id == R.id.col_paper || id == R.id.col_history) {//新闻界面&历史记录
                 final String str = textView.getText().toString();
@@ -279,42 +286,28 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public ArrayList<NewsPiece> getMoreNews() {
-        ArrayList<NewsPiece> newNewsList = new ArrayList<NewsPiece>();
-        newNewsList = NewsAPI.getNextPage();
+        ArrayList<NewsPiece> newNewsList = NewsAPI.getNextPage();
         return newNewsList;
     }
 
 
-    private void setState(String newState) {
-        Log.i("State", newState);
-        this.state = newState;
-        TextView tv = findViewById(R.id.col_news);
-        for (int i = 0; i < state.length(); i++) {
-            if (i == 0) {
-                tv = findViewById(R.id.col_news);
-            } else if (i == 1) {
-                tv = findViewById(R.id.col_paper);
-            } else if (i == 2) {
-                tv = findViewById(R.id.col_data);
-            } else if (i == 3) {
-                tv = findViewById(R.id.col_graph);
-            } else if (i == 4) {
-                tv = findViewById(R.id.col_cluster);
-            } else if (i == 5) {
-                tv = findViewById(R.id.col_scholar);
-            } else if (i == 6) {
-                tv = findViewById(R.id.col_history);
-            }
-            if (newState.charAt(i) == '1') {
-                tv.setVisibility(View.VISIBLE);
-                Log.i("state", i + "true");
-                visible[i] = true;
-            } else {
-                tv.setVisibility(View.GONE);
-                Log.i("state", i + "false");
-                visible[i] = false;
-            }
-        }
+    private void setOneCol(SharedPreferences pref, String name, int id) {
+        if (pref.getBoolean(name, false))
+            findViewById(id).setVisibility(View.VISIBLE);
+        else
+            findViewById(id).setVisibility(ViewStub.GONE);
+    }
+
+    private void setState() {
+        SharedPreferences categoryPref = getSharedPreferences("Category", 0);
+        Log.i("State", " ");
+        setOneCol(categoryPref, "news", R.id.col_news);
+        setOneCol(categoryPref, "paper", R.id.col_paper);
+        setOneCol(categoryPref, "statistics", R.id.col_data);
+        setOneCol(categoryPref, "graph", R.id.col_graph);
+        setOneCol(categoryPref, "cluster", R.id.col_cluster);
+        setOneCol(categoryPref, "scholar", R.id.col_scholar);
+        setOneCol(categoryPref, "history", R.id.col_history);
     }
 
     @Override
@@ -329,10 +322,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         int id = item.getItemId();
         if (id == R.id.category_chosen) {//管理订阅项目
             Intent outIntent = new Intent(this, CategorySettingActivity.class);
-            Bundle outBundle = new Bundle();
-            outBundle.putString("curState", state);
-            outIntent.putExtras(outBundle);
-            startActivityForResult(outIntent, 11);
+            startActivity(outIntent);
+            setState();
         } else if (id == R.id.search) {//搜索
             searchContent();
 

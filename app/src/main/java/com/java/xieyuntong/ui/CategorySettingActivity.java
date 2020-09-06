@@ -1,11 +1,11 @@
 package com.java.xieyuntong.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
 import com.java.xieyuntong.R;
 
@@ -15,9 +15,6 @@ public class CategorySettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
-        Intent inIntent = getIntent();
-        Bundle inBundle = inIntent.getExtras();
-        inBundle.get("curStat");
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.settings, new SettingsFragment())
@@ -26,13 +23,13 @@ public class CategorySettingActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-//        Intent outIntent = new Intent()
-//        setResult(12);
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+            PreferenceManager manager = getPreferenceManager();
+            manager.setSharedPreferencesName("Category");
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
         }
     }
