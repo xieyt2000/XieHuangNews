@@ -9,6 +9,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -55,6 +56,7 @@ public class EpidemicDataActivity extends AppCompatActivity {
     private ArrayList<Date> dateArrayList;
     private LineChart lineChart;
     private TextView graphTextView;
+    private Toolbar mToolbar;
 
 
     @Override
@@ -71,6 +73,14 @@ public class EpidemicDataActivity extends AppCompatActivity {
         mTypeSpinner = findViewById(R.id.spinner_type);
         lineChart = findViewById(R.id.linechart);
         mTextView = findViewById(R.id.country_province_text);
+        mToolbar = findViewById(R.id.toolbar);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        mToolbar.setNavigationIcon(R.drawable.back);
         dataList = new ArrayList<Integer>();
         dateArrayList = new ArrayList<Date>();
         graphTextView = findViewById(R.id.graph_text);
@@ -119,7 +129,7 @@ public class EpidemicDataActivity extends AppCompatActivity {
                 if (province.equals("all")) {
                     s = country + "全国统计数据";
                 } else {
-                    s = country + "国" + province + "省" + "统计数据";
+                    s = country + "\n" + province +   "统计数据";
                 }
                 mTextView.setText(s);
                 initData();
