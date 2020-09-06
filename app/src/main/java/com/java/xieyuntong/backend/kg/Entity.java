@@ -27,14 +27,31 @@ public class Entity {
             }
         }
 
-        final String type;
-        final String label;
-        final Hierarchy hierarchy;
+        // class variables
+        private final String type;
+        private final String label;
+        private final Hierarchy hierarchy;
 
+        // constructor
         public Relation(String type, String label, boolean forward) {
             this.type = type;
             this.label = label;
             this.hierarchy = forward ? Hierarchy.Parent : Hierarchy.Child;
+        }
+
+
+        //getter
+
+        public String getType() {
+            return type;
+        }
+
+        public String getLabel() {
+            return label;
+        }
+
+        public Hierarchy getHierarchy() {
+            return hierarchy;
         }
     }
 

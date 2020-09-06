@@ -121,11 +121,33 @@ public class RequestHandler {
                     getJSONArray("data").getJSONObject(0);
             String label = jsonEntity.getString("label");
             URL imgURL = new URL(jsonEntity.getString("img"));
+            JSONObject jsonInfo = jsonEntity.getJSONObject("abstractInfo");
+            String description = jsonInfo.getString("baidu");
+            if (description.equals(""))
+                description = jsonInfo.getString("zhwiki");
+            if (description.equals(""))
+                description = jsonInfo.getString("enwiki");
+            JSONObject jsonCOVID = jsonInfo.getJSONObject("COVID");
+            LinkedHashMap<String, String> properties = new LinkedHashMap<>();
+            JSONObject jsonProperties = jsonCOVID.getJSONObject("properties");
+            Iterator<String> keys = jsonProperties.keys();
+            while (keys.hasNext()) {
+                String title = keys.next();
+                String content = jsonProperties.getString(title);
+                if (content.startsWith("[") && content.endsWith("]")) {
+                    JSONArray jsonContentArr = jsonProperties.getJSONArray(title);
 
+                    for (int i = 0; i < jsonContentArr.length(); i++) {
+
+                    }
+                }
+            }
+            ArrayList<Entity.Relation> relations = new ArrayList<>();
+            return new Entity(label, imgURL, description, properties, relations);
         } catch (JSONException | MalformedURLException e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 }
 
