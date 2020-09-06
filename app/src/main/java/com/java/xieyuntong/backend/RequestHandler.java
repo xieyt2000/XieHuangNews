@@ -130,19 +130,29 @@ public class RequestHandler {
             JSONObject jsonCOVID = jsonInfo.getJSONObject("COVID");
             LinkedHashMap<String, String> properties = new LinkedHashMap<>();
             JSONObject jsonProperties = jsonCOVID.getJSONObject("properties");
-            Iterator<String> keys = jsonProperties.keys();
-            while (keys.hasNext()) {
-                String title = keys.next();
+            Iterator<String> propertyKeys = jsonProperties.keys();
+            while (propertyKeys.hasNext()) {
+                String title = propertyKeys.next();
                 String content = jsonProperties.getString(title);
                 if (content.startsWith("[") && content.endsWith("]")) {
                     JSONArray jsonContentArr = jsonProperties.getJSONArray(title);
-
+                    StringBuilder contentBuilder = new StringBuilder();
                     for (int i = 0; i < jsonContentArr.length(); i++) {
-
+                        contentBuilder.append(jsonContentArr.get(i));
+                        contentBuilder.append('\n');
                     }
+                    contentBuilder.setLength(contentBuilder.length() - 1);    //delete last \n
+                    content = contentBuilder.toString();
                 }
+                properties.put(title, content);
             }
             ArrayList<Entity.Relation> relations = new ArrayList<>();
+            JSONArray jsonRelations = jsonCOVID.getJSONArray("relations");
+            for (int i = 0; i < jsonRelations.length(); i++) {
+                JSONObject jsonRelation = jsonRelations.getJSONObject(i);
+                relations.add(new Entity.Relation(jsonRelation.getString("relation"),
+                        jsonRelation.getString("label"), jsonRelation.getBoolean("forward")));
+            }
             return new Entity(label, imgURL, description, properties, relations);
         } catch (JSONException | MalformedURLException e) {
             e.printStackTrace();
