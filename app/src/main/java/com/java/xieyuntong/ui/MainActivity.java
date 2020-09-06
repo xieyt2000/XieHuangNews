@@ -65,7 +65,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         BackEnd.initialize(this);
         StatAPI.refreshStat();
         setState();
-        curState = 0;
+        SharedPreferences sharedPreferences = getSharedPreferences("Category", 0);
+        if(sharedPreferences.getBoolean("news", false)){
+            curState = 0;
+        }else{
+            curState = 7;
+        }
+
         newsList = new ArrayList<>();
         initColumns();
         initViews();

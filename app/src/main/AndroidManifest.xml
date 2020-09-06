@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.java.xieyuntong">
+    package="com.java.xieyuntong">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-            android:allowBackup="true"
-            android:icon="@mipmap/burger_launcher"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/burger_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+        android:allowBackup="true"
+        android:icon="@mipmap/burger_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/burger_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.EpidemicGraphActivity"></activity>
         <activity
-                android:name=".ui.CategorySettingActivity"
-                android:label="@string/title_activity_category_setting" />
+            android:name=".ui.CategorySettingActivity"
+            android:label="@string/title_activity_category_setting" />
         <activity android:name=".ui.NewsItemActivity" />
         <activity android:name=".ui.CategoryManageActivity" />
         <activity android:name=".data.EpidemicDataActivity" />
