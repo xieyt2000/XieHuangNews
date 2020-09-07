@@ -110,9 +110,9 @@ public class EpidemicDataActivity extends AppCompatActivity {
                 allProvinces = (String[]) provinces.toArray(new String[provinces.size()]);
 
                 mProvinceSpinner = findViewById(R.id.spinner_province);
-                ArrayAdapter<String> provinceApatper = new ArrayAdapter<String>(EpidemicDataActivity.this,
+                ArrayAdapter<String> provinceAdapter = new ArrayAdapter<String>(EpidemicDataActivity.this,
                         android.R.layout.simple_list_item_1, allProvinces);
-                mProvinceSpinner.setAdapter(provinceApatper);
+                mProvinceSpinner.setAdapter(provinceAdapter);
 
             }
 

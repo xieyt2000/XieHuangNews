@@ -67,9 +67,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setState();
         SharedPreferences sharedPreferences = getSharedPreferences("Category", 0);
         if (sharedPreferences.getBoolean("news", false)) {
-            curState = 0;
+            curState = 0;//新闻
         } else {
-            curState = 7;
+            curState = 7;//历史
         }
 
         newsList = new ArrayList<>();
@@ -192,6 +192,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 });
 
             } else if (id == R.id.col_graph) {//疫情图谱
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(MainActivity.this, EpidemicGraphActivity.class);
+                        startActivity(intent);
+                        mDrawerLayout.closeDrawer(Gravity.LEFT);
+                    }
+                });
 
             } else if (id == R.id.col_cluster) {//新闻聚类
 
