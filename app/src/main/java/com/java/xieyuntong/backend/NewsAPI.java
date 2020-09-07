@@ -49,6 +49,8 @@ public class NewsAPI {
 
     static public ArrayList<NewsPiece> search(String query) {
         ArrayList<NewsPiece> res = new ArrayList<>();
+        if (query.equals(""))
+            return res;
         for (ArrayList<NewsPiece> newsPage : newsPagesList) {
             for (NewsPiece newsPiece : newsPage) {
                 if (newsPiece.getTitle().contains(query))
