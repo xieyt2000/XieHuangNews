@@ -1,8 +1,9 @@
 package com.java.xieyuntong.backend.kg;
 
+import android.graphics.Bitmap;
+
 import androidx.annotation.NonNull;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -59,7 +60,7 @@ public class Entity {
     //class variable
 
     final private String label;
-    final private URL imgURL;
+    final private Bitmap img;
     final private String description;
     final private LinkedHashMap<String, String> properties;
     final private ArrayList<Relation> relations;
@@ -67,10 +68,10 @@ public class Entity {
 
     // constructor
 
-    public Entity(String label, URL imgURL, String description,
+    public Entity(String label, Bitmap img, String description,
                   LinkedHashMap<String, String> properties, ArrayList<Relation> relations) {
         this.label = label;
-        this.imgURL = imgURL;
+        this.img = img;
         this.description = description;
         this.properties = properties;
         this.relations = relations;
@@ -83,8 +84,8 @@ public class Entity {
         return label;
     }
 
-    public URL getImgURL() {
-        return imgURL;
+    public Bitmap getImg() {
+        return img;
     }
 
     public String getDescription() {

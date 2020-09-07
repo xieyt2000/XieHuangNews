@@ -1,5 +1,8 @@
 package com.java.xieyuntong.backend;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import androidx.annotation.Nullable;
 
 import com.java.xieyuntong.backend.kg.Entity;
@@ -12,7 +15,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -121,6 +123,7 @@ public class RequestHandler {
                     getJSONArray("data").getJSONObject(0);
             String label = jsonEntity.getString("label");
             URL imgURL = new URL(jsonEntity.getString("img"));
+            Bitmap img = BitmapFactory.decodeStream(imgURL.openConnection().getInputStream());
             JSONObject jsonInfo = jsonEntity.getJSONObject("abstractInfo");
             String description = jsonInfo.getString("baidu");
             if (description.equals(""))
@@ -153,8 +156,8 @@ public class RequestHandler {
                 relations.add(new Entity.Relation(jsonRelation.getString("relation"),
                         jsonRelation.getString("label"), jsonRelation.getBoolean("forward")));
             }
-            return new Entity(label, imgURL, description, properties, relations);
-        } catch (JSONException | MalformedURLException e) {
+            return new Entity(label, img, description, properties, relations);
+        } catch (JSONException | IOException e) {
             e.printStackTrace();
             return null;
         }
