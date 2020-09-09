@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/col_news"
+        android:icon="@drawable/share"
+        android:title="@string/news" />
+
+    <item
+        android:id="@+id/col_paper"
+        android:icon="@drawable/share"
+        android:title="@string/paper" />
+
+    <item
+        android:id="@+id/col_data"
+        android:icon="@drawable/share"
+        android:title="@string/data" />
+
+    <item
+        android:id="@+id/col_graph"
+        android:icon="@drawable/share"
+        android:title="@string/graph" />
+    <item
+        android:id="@+id/col_cluster"
+        android:icon="@drawable/share"
+        android:title="@string/cluster" />
+    <item
+    android:id="@+id/col_scholar"
+    android:icon="@drawable/share"
+    android:title="@string/scholar" />
+    <item
+        android:id="@+id/col_history"
+        android:icon="@drawable/share"
+        android:title="@string/history" />
+</menu>

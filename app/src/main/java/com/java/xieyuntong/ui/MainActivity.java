@@ -1,5 +1,6 @@
 package com.java.xieyuntong.ui;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,10 +25,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.navigation.NavigationView;
 import com.java.xieyuntong.R;
 import com.java.xieyuntong.backend.BackEnd;
 import com.java.xieyuntong.backend.NewsAPI;
 import com.java.xieyuntong.backend.NewsPiece;
+import com.java.xieyuntong.backend.StatAPI;
 import com.java.xieyuntong.data.EpidemicDataActivity;
 import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
 import com.jwenfeng.library.pulltorefresh.PullToRefreshLayout;
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private MyNewsAdapter myNewsAdapter;
     private PullToRefreshLayout mPullToRefreshLayout;
     private ListView listView;
+    private NavigationView navigationView;
 
     @Override
     protected void onResume() {
@@ -62,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         MobSDK.submitPolicyGrantResult(true, null);
         BackEnd.initialize(this);
-        setState();
         SharedPreferences sharedPreferences = getSharedPreferences("Category", 0);
         if (sharedPreferences.getBoolean("news", false)) {
             curState = 0;//新闻
@@ -71,8 +74,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
         newsList = new ArrayList<>();
-        initColumns();
         initViews();
+        initColumns();
+        setState();
         refreshMain();
     }
 
@@ -157,60 +161,99 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void initColumns() {
-        int id;
-        TextView textView;
-        for (int value : colId) {
-            id = value;
-            textView = findViewById(id);
-            if (id == R.id.col_news || id == R.id.col_paper || id == R.id.col_history) {//新闻界面&历史记录
-                final String str = textView.getText().toString();
-                Log.i("click", str);
-                final int finalId = id;
-                textView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (finalId == R.id.col_news) {
-                            curState = 0;
-                        } else if (finalId == R.id.col_paper) {
-                            curState = 1;
-                        } else {
-                            curState = 6;
-                        }
-                        refreshMain();
-                        mDrawerLayout.closeDrawer(Gravity.LEFT);
-                    }
-                });
-            } else if (id == R.id.col_data) {//疫情数据
-                textView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(MainActivity.this, EpidemicDataActivity.class);
-                        startActivity(intent);
-                        mDrawerLayout.closeDrawer(Gravity.LEFT);
-                    }
-                });
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("RtlHardcoded")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                //在这里处理item的点击事件
+                int id = item.getItemId();
 
-            } else if (id == R.id.col_graph) {//疫情图谱
-                textView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(MainActivity.this, EpidemicGraphActivity.class);
-                        startActivity(intent);
-                        mDrawerLayout.closeDrawer(Gravity.LEFT);
-                    }
-                });
+                if (id == R.id.col_news) {
+                    curState = 0;
+                    refreshMain();
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                } else if (id == R.id.col_paper) {
+                    curState = 1;
+                    refreshMain();
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                } else if (id == R.id.col_history) {
+                    curState = 6;
+                    refreshMain();
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                } else if (id == R.id.col_data) {//疫情数据
+                    Intent intent = new Intent(MainActivity.this, EpidemicDataActivity.class);
+                    startActivity(intent);
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                } else if (id == R.id.col_graph) {//疫情图谱
+                    Intent intent = new Intent(MainActivity.this, EpidemicGraphActivity.class);
+                    startActivity(intent);
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                } else if (id == R.id.col_cluster) {//新闻聚类
 
-            } else if (id == R.id.col_cluster) {//新闻聚类
+                } else if (id == R.id.col_scholar) {//知疫学者
 
-            } else if (id == R.id.col_scholar) {//知疫学者
-
+                }
+                return true;
             }
-        }
+        });
     }
+
+//    private void initColumns() {
+//        int id;
+//        TextView textView;
+//        for (int value : colId) {
+//            id = value;
+//            textView = findViewById(id);
+//            if (id == R.id.col_news || id == R.id.col_paper || id == R.id.col_history) {//新闻界面&历史记录
+//                final String str = textView.getText().toString();
+//                Log.i("click", str);
+//                final int finalId = id;
+//                textView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        if (finalId == R.id.col_news) {
+//                            curState = 0;
+//                        } else if (finalId == R.id.col_paper) {
+//                            curState = 1;
+//                        } else {
+//                            curState = 6;
+//                        }
+//                        refreshMain();
+//                        mDrawerLayout.closeDrawer(Gravity.LEFT);
+//                    }
+//                });
+//            } else if (id == R.id.col_data) {//疫情数据
+//                textView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Intent intent = new Intent(MainActivity.this, EpidemicDataActivity.class);
+//                        startActivity(intent);
+//                        mDrawerLayout.closeDrawer(Gravity.LEFT);
+//                    }
+//                });
+//
+//            } else if (id == R.id.col_graph) {//疫情图谱
+//                textView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Intent intent = new Intent(MainActivity.this, EpidemicGraphActivity.class);
+//                        startActivity(intent);
+//                        mDrawerLayout.closeDrawer(Gravity.LEFT);
+//                    }
+//                });
+//
+//            } else if (id == R.id.col_cluster) {//新闻聚类
+//
+//            } else if (id == R.id.col_scholar) {//知疫学者
+//
+//            }
+//        }
+//    }
 
 
     private void initViews() {
         mToolbar = findViewById(R.id.toolbar);
+        navigationView = findViewById(R.id.navigation_view);
         mToolbar.setTitle("首页");
         setSupportActionBar(mToolbar);
         mDrawerLayout = findViewById(R.id.drawer_layout);
@@ -306,9 +349,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private void setOneCol(SharedPreferences pref, String name, int id) {
         if (pref.getBoolean(name, false))
-            findViewById(id).setVisibility(View.VISIBLE);
+            //findViewById(id).setVisible(View.VISIBLE);
+            navigationView.getMenu().findItem(id).setVisible(true);
         else
-            findViewById(id).setVisibility(ViewStub.GONE);
+            //findViewById(id).setVisibility(ViewStub.GONE);
+            navigationView.getMenu().findItem(id).setVisible(false);
     }
 
     private void setState() {
