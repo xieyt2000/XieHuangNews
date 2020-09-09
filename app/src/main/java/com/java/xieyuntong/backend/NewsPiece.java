@@ -2,8 +2,16 @@ package com.java.xieyuntong.backend;
 
 import androidx.annotation.NonNull;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 
 public class NewsPiece {
+
+    private static SimpleDateFormat inputFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US);
+    private static SimpleDateFormat outFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
 
     public enum NewsType {
         NEWS("news"), PAPER("paper");
@@ -30,7 +38,7 @@ public class NewsPiece {
 
     private final String ID;   //ID from aminer
     private final NewsType type;
-    private final String time;
+    private final Date time;
     private final String source;
     private final String title;
     private final String content;
@@ -39,9 +47,16 @@ public class NewsPiece {
 
     //constructor
 
-    NewsPiece(NewsType type, String time, String source, String title, String content, String ID) {
+    NewsPiece(NewsType type, String timeStr, String source, String title, String content, String ID) {
+        Date time1;
         this.type = type;
-        this.time = time;
+        try {
+            time1 = inputFormat.parse(timeStr);
+        } catch (ParseException e) {
+            time1 = null;
+            e.printStackTrace();
+        }
+        this.time = time1;
         this.source = source;
         this.title = title;
         this.content = content;
@@ -49,9 +64,16 @@ public class NewsPiece {
     }
 
     NewsPiece(String str) {
+        Date time1;
         String[] strList = str.split("###");
         this.type = NewsType.fromString(strList[0]);
-        this.time = strList[1];
+        try {
+            time1 = inputFormat.parse(strList[1]);
+        } catch (ParseException e) {
+            time1 = null;
+            e.printStackTrace();
+        }
+        this.time = time1;
         this.source = strList[2];
         this.title = strList[3];
         this.content = strList[4];
@@ -64,7 +86,7 @@ public class NewsPiece {
     @NonNull
     @Override
     public String toString() {
-        return String.join("###", type.toString(), time, source, title, content, ID);
+        return String.join("###", type.toString(), inputFormat.format(time), source, title, content, ID);
     }
 
     @Override
@@ -96,8 +118,12 @@ public class NewsPiece {
         return type;
     }
 
-    public String getTime() {
+    public Date getTime() {
         return time;
+    }
+
+    public String getTimeStr() {
+        return outFormat.format(time);
     }
 
     public String getSource() {

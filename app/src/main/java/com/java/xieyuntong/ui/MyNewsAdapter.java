@@ -60,7 +60,7 @@ public class MyNewsAdapter extends BaseAdapter {
         Log.i("news", String.valueOf(i));
         holder.textView1.setText(newsPieceArrayList.get(i).getTitle());
         holder.textView2.setText(newsPieceArrayList.get(i).getSource());
-        holder.textView3.setText(newsPieceArrayList.get(i).getTime());
+        holder.textView3.setText(newsPieceArrayList.get(i).getTimeStr());
         if (newsPieceArrayList.get(i).getHaveRead()) {//设置灰色
             Log.i("已读", String.valueOf(i));
             holder.relativeLayout.setBackgroundColor(Color.GRAY);

@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             NewsAPI.read(newsPiece);
             Bundle bundle = new Bundle();
             bundle.putString("type", newsPiece.getType().toString());
-            bundle.putString("time", newsPiece.getTime());
+            bundle.putString("time", newsPiece.getTimeStr());
             bundle.putString("source", newsPiece.getSource());
             bundle.putString("content", newsPiece.getContent());
             bundle.putString("title", newsPiece.getTitle());
