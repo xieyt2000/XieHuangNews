@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             NewsAPI.setType(NewsPiece.NewsType.NEWS);
             NewsAPI.reset();
             newsList = NewsAPI.getNextPage();
+
         } else if (curState == 1) {//paper
             NewsAPI.setType(NewsPiece.NewsType.PAPER);
             NewsAPI.reset();

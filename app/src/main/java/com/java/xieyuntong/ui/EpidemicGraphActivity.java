@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -171,17 +172,17 @@ public class EpidemicGraphActivity extends AppCompatActivity {
 
                 holder.textView1.setText(relations.get(i).getHierarchy().toString());
                 holder.textView2.setText(relations.get(i).getLabel());
-                holder.textView2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        TextView textView = (TextView) view;
-                        keyWord = textView.getText().toString();
-                        mEditText.setText(keyWord);
-                        refresh();
-                    }
-                });
                 return view;
 
+            }
+        });
+        listViewRelation.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Entity.Relation relation = relations.get(i);
+                keyWord = relation.getLabel();
+                mEditText.setText(keyWord);
+                refresh();
             }
         });
     }
