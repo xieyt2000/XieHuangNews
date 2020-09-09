@@ -28,7 +28,6 @@ import com.java.xieyuntong.R;
 import com.java.xieyuntong.backend.BackEnd;
 import com.java.xieyuntong.backend.NewsAPI;
 import com.java.xieyuntong.backend.NewsPiece;
-import com.java.xieyuntong.backend.StatAPI;
 import com.java.xieyuntong.data.EpidemicDataActivity;
 import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
 import com.jwenfeng.library.pulltorefresh.PullToRefreshLayout;
@@ -63,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         MobSDK.submitPolicyGrantResult(true, null);
         BackEnd.initialize(this);
-        StatAPI.refreshStat();
         setState();
         SharedPreferences sharedPreferences = getSharedPreferences("Category", 0);
         if (sharedPreferences.getBoolean("news", false)) {

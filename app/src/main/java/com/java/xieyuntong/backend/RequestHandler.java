@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import androidx.annotation.Nullable;
 
 import com.java.xieyuntong.backend.kg.Entity;
+import com.java.xieyuntong.backend.scholar.Scholar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +28,7 @@ public class RequestHandler {
     static final String NEWS_URL_STR = "https://covid-dashboard.aminer.cn/api/events/list";
     static final String STAT_URL_STR = "https://covid-dashboard.aminer.cn/api/dist/epidemic.json";
     static final String GRAPH_URL_STR = "https://innovaapi.aminer.cn/covid/api/v1/pneumonia/entityquery";
+    static final String SCHOLAR_URL_STR = "https://innovaapi.aminer.cn/predictor/api/v1/valhalla/highlight/get_ncov_expers_list?v=2";
 
     //construct URL string for "GET" method with parameters
     static String constructURL(String urlStr, @Nullable final Map<String, String> paraMap) {
@@ -161,6 +163,40 @@ public class RequestHandler {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static ArrayList<Scholar> requestScholars() {
+        String jsonStr = httpGet(SCHOLAR_URL_STR, null);
+        ArrayList<Scholar> scholars = new ArrayList<>();
+        try {
+            assert jsonStr != null;
+            JSONObject jsonObj = new JSONObject(jsonStr);
+            JSONArray jsonData = jsonObj.getJSONArray("data");
+            for (int i = 0; i < jsonData.length(); i++) {
+                JSONObject jsonScholar = jsonData.getJSONObject(i);
+                URL imgURL = new URL(jsonScholar.getString("avatar"));
+                Bitmap img = BitmapFactory.decodeStream(imgURL.openConnection().getInputStream());
+                JSONObject jsonInd = jsonScholar.getJSONObject("indices");
+                Scholar.Indices indices = new Scholar.Indices(jsonInd.getInt("activity"),
+                        jsonInd.getInt("citations"), jsonInd.getInt("gindex"),
+                        jsonInd.getInt("hindex"), jsonInd.getInt("newStar"),
+                        jsonInd.getInt("risingStar"), jsonInd.getInt("sociability"));
+                String name = jsonScholar.optString("name_zh");
+                if (name.equals(""))
+                    name = jsonScholar.getString("name");
+                JSONObject jsonProfile = jsonScholar.getJSONObject("profile");
+                String bio = jsonProfile.getString("bio");
+                String affiliation = jsonProfile.optString("affiliation_zh");
+                if (affiliation.equals(""))
+                    affiliation = jsonProfile.optString("affiliation");
+                String education = jsonProfile.optString("edu");
+                boolean passed = jsonScholar.getBoolean("is_passedaway");
+                scholars.add(new Scholar(name, img, indices, bio, affiliation, education, passed));
+            }
+        } catch (JSONException | IOException e) {
+            e.printStackTrace();
+        }
+        return scholars;
     }
 }
 
