@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -13,7 +14,7 @@
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="400dp"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginEnd="60dp"
             app:expandedTitleMarginStart="48dp"
@@ -21,19 +22,20 @@
 
             <ImageView
                 android:id="@+id/scholar_image"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:scaleType="fitXY"
                 app:layout_collapseMode="pin"
                 app:layout_collapseParallaxMultiplier="0.5"
+
                 android:contentDescription="TODO" />
 
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/scholar_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                app:layout_collapseMode="pin">
+            android:id="@+id/scholar_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            app:layout_collapseMode="pin">
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -52,11 +54,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="所属"
-                android:layout_marginTop="20dp"
+                android:paddingTop="20dp"
                 android:textSize="@dimen/text_size_large"/>
 
 
@@ -69,8 +73,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="教育"
-                android:layout_marginTop="20dp"
+                android:text="教育经历"
+                android:paddingTop="20dp"
                 android:textSize="@dimen/text_size_large"/>
 
             <TextView
@@ -82,8 +86,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="指数"
+                android:paddingTop="20dp"
+                android:textSize="@dimen/text_size_large"/>
+
+            <TextView
+                android:id="@+id/scholar_indice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="123"
+                android:textSize="@dimen/text_size_normal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="小传"
-                android:layout_marginTop="20dp"
+                android:paddingTop="20dp"
                 android:textSize="@dimen/text_size_large"/>
 
             <TextView
@@ -91,11 +108,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="1238888888888"
-                android:textSize="@dimen/text_size_normal" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="123"/>
+                android:textSize="20sp" />
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

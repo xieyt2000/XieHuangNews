@@ -50,11 +50,19 @@ public class ScholarActivity extends AppCompatActivity {
                     Scholar scholar = scholars.get(i);
 
                     Bundle bundle = new Bundle();
-                    bundle.putString("url",scholars.get(i).getImgURL().toString());
-                    bundle.putString("name",scholars.get(i).getName());
-                    bundle.putString("bio",scholars.get(i).getBio());
-                    bundle.putString("affiliation",scholars.get(i).getAffiliation());
-                    bundle.putString("education",scholars.get(i).getEducation());
+                    bundle.putString("url",scholar.getImgURL().toString());
+                    bundle.putString("name",scholar.getName());
+                    bundle.putString("bio",scholar.getBio());
+                    bundle.putString("affiliation",scholar.getAffiliation());
+                    bundle.putString("education",scholar.getEducation());
+                    Scholar.Indices indices = scholar.getIndices();
+                    bundle.putDouble("activity",indices.activity);
+                    bundle.putDouble("newStar",indices.newStar);
+                    bundle.putDouble("risingStar",indices.risingStar);
+                    bundle.putDouble("sociability",indices.sociability);
+                    bundle.putInt("citations",indices.citations);
+                    bundle.putInt("gindex",indices.gindex);
+                    bundle.putInt("hindex",indices.hindex);
 
                     Intent intent = new Intent(ScholarActivity.this, ScholarItemActivity.class);
                     intent.putExtras(bundle);
