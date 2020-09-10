@@ -206,7 +206,9 @@ public class RequestHandler {
                 try {
 
                     URL imgURL = new URL(urlStr);
-                    ret[0] = BitmapFactory.decodeStream(imgURL.openConnection().getInputStream());
+                    HttpURLConnection connection = (HttpURLConnection) imgURL.openConnection();
+                    connection.setConnectTimeout(1000);
+                    ret[0] = BitmapFactory.decodeStream(connection.getInputStream());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

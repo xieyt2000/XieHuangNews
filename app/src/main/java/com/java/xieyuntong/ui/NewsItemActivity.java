@@ -65,6 +65,10 @@ public class NewsItemActivity extends AppCompatActivity {
         mShareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent textIntent = new Intent(Intent.ACTION_SEND);
+                textIntent.setType("text/plain");
+                textIntent.putExtra(Intent.EXTRA_TEXT, "标题：" + title + '\n' + "正文：" + content);
+                startActivity(Intent.createChooser(textIntent, "分享"));
             }
         });
 
