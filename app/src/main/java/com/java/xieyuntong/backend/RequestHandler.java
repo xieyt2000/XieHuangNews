@@ -204,6 +204,7 @@ public class RequestHandler {
             @Override
             public void run() {
                 try {
+
                     URL imgURL = new URL(urlStr);
                     ret[0] = BitmapFactory.decodeStream(imgURL.openConnection().getInputStream());
                 } catch (IOException e) {

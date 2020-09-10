@@ -43,6 +43,8 @@ public class ScholarItemActivity extends AppCompatActivity {
         textViewEducation = findViewById(R.id.scholar_education);
         String edu = "\t\t\t\t" + bundle.getString("education");
         edu = edu.replace("\n", "\n\t\t\t\t");
+        edu = edu.replace("<br><br>","\n\t\t\t\t");
+        edu = edu.replace("<br>","\n\t\t\t\t");
         textViewEducation.setText(edu);
         textViewIndices = findViewById(R.id.scholar_indice);
         String s = "";
@@ -70,6 +72,9 @@ public class ScholarItemActivity extends AppCompatActivity {
         mImageView = findViewById(R.id.scholar_image);
         String url = bundle.getString("url");
         Bitmap bitmap = RequestHandler.getImage(url);
-        mImageView.setImageBitmap(bitmap);
+        if(bitmap != null){
+            mImageView.setImageBitmap(bitmap);
+        }
+
     }
 }
