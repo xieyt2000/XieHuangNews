@@ -39,4 +39,8 @@ public class ClusterAPI {
     public static ArrayList<String> getClusterKeywords() {
         return clusterKeywords;
     }
+
+    public ArrayList<Event> getEventsByCluster(int clusterID) {
+        return eventListByCluster.get(clusterID);
+    }
 }
