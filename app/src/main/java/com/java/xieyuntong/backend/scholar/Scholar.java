@@ -1,6 +1,6 @@
 package com.java.xieyuntong.backend.scholar;
 
-import android.graphics.Bitmap;
+import java.net.URL;
 
 public class Scholar {
 
@@ -27,7 +27,7 @@ public class Scholar {
 
     //class variables
     final private String name;
-    final private Bitmap img;
+    final private URL imgURL;
     final private Indices indices;
     final private String bio;
     final private String affiliation;
@@ -37,10 +37,10 @@ public class Scholar {
 
     // constructor
 
-    public Scholar(String name, Bitmap img, Indices indices, String bio,
+    public Scholar(String name, URL imgURL, Indices indices, String bio,
                    String affiliation, String education, boolean passedAway) {
         this.name = name;
-        this.img = img;
+        this.imgURL = imgURL;
         this.indices = indices;
         this.bio = bio;
         this.affiliation = affiliation;
@@ -55,8 +55,8 @@ public class Scholar {
         return name;
     }
 
-    public Bitmap getImg() {
-        return img;
+    public URL getImgURL() {
+        return imgURL;
     }
 
     public Indices getIndices() {

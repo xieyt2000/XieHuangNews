@@ -14,7 +14,7 @@ public class NewsPiece {
     private static SimpleDateFormat outFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
 
     public enum NewsType {
-        NEWS("news"), PAPER("paper");
+        NEWS("news"), PAPER("paper"), EVENT("event");
         private final String text;
 
         NewsType(String text) {

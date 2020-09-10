@@ -175,7 +175,6 @@ public class RequestHandler {
             for (int i = 0; i < jsonData.length(); i++) {
                 JSONObject jsonScholar = jsonData.getJSONObject(i);
                 URL imgURL = new URL(jsonScholar.getString("avatar"));
-                Bitmap img = BitmapFactory.decodeStream(imgURL.openConnection().getInputStream());
                 JSONObject jsonInd = jsonScholar.getJSONObject("indices");
                 Scholar.Indices indices = new Scholar.Indices(jsonInd.getInt("activity"),
                         jsonInd.getInt("citations"), jsonInd.getInt("gindex"),
@@ -191,7 +190,7 @@ public class RequestHandler {
                     affiliation = jsonProfile.optString("affiliation");
                 String education = jsonProfile.optString("edu");
                 boolean passed = jsonScholar.getBoolean("is_passedaway");
-                scholars.add(new Scholar(name, img, indices, bio, affiliation, education, passed));
+                scholars.add(new Scholar(name, imgURL, indices, bio, affiliation, education, passed));
             }
         } catch (JSONException | IOException e) {
             e.printStackTrace();
