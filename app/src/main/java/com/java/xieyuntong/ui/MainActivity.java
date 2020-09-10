@@ -254,6 +254,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private void initViews() {
         mToolbar = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.navigation_view);
+        navigationView.setItemIconTintList(null);
         mToolbar.setTitle("首页");
         setSupportActionBar(mToolbar);
         mDrawerLayout = findViewById(R.id.drawer_layout);
@@ -366,6 +367,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setOneCol(categoryPref, "cluster", R.id.col_cluster);
         setOneCol(categoryPref, "scholar", R.id.col_scholar);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
