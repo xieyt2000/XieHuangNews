@@ -40,7 +40,7 @@ public class ClusterAPI {
         return clusterKeywords;
     }
 
-    public ArrayList<Event> getEventsByCluster(int clusterID) {
+    public static ArrayList<Event> getEventsByCluster(int clusterID) {
         return eventListByCluster.get(clusterID);
     }
 }

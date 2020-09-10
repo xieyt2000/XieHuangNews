@@ -28,6 +28,8 @@ import com.java.xieyuntong.R;
 import com.java.xieyuntong.backend.BackEnd;
 import com.java.xieyuntong.backend.NewsAPI;
 import com.java.xieyuntong.backend.NewsPiece;
+import com.java.xieyuntong.backend.cluster.ClusterAPI;
+import com.java.xieyuntong.backend.cluster.Event;
 import com.java.xieyuntong.data.EpidemicDataActivity;
 import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
 import com.jwenfeng.library.pulltorefresh.PullToRefreshLayout;
@@ -184,6 +186,28 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     startActivity(intent);
                     mDrawerLayout.closeDrawer(Gravity.LEFT);
                 } else if (id == R.id.col_cluster) {//新闻聚类
+                    ArrayList<String> keyWords = ClusterAPI.getClusterKeywords();
+                    final String[] items = (String[]) keyWords.toArray(new String[keyWords.size()]);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, 0);
+                    builder.setTitle("选择聚类");
+                    //builder.setIcon(R.mipmap.ic_launcher);
+                    builder.setSingleChoiceItems(items, 0,
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            ArrayList<Event> tmpNewsList = ClusterAPI.getEventsByCluster(which);
+                            newsList.clear();
+                            newsList.addAll(tmpNewsList);
+                        }
+                    });
+                    builder.create().show();
 
                 } else if (id == R.id.col_scholar) {//知疫学者
                     Intent intent = new Intent(MainActivity.this, ScholarActivity.class);
