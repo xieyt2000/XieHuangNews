@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private PullToRefreshLayout mPullToRefreshLayout;
     private ListView listView;
     private NavigationView navigationView;
+    private int clusterNumber;
 
     @Override
     protected void onResume() {
@@ -93,9 +94,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             NewsAPI.setType(NewsPiece.NewsType.PAPER);
             NewsAPI.reset();
             newsList = NewsAPI.getNextPage();
-        } else {//history
+        } else if (curState == 6) {//history
             newsList = NewsAPI.getHistory();
-
+        } else {//cluster
+            ArrayList<Event> tmpNewsList = ClusterAPI.getEventsByCluster(clusterNumber);
+            newsList.clear();
+            for (Event event : tmpNewsList) {
+                NewsPiece newsPiece = event;
+                newsList.add(newsPiece);
+            }
+            //newsList.addAll(tmpNewsList);
         }
         showNewsList();
     }
@@ -133,17 +141,31 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             prevFromTop = firstChild.getTop();//获取listview中顶部view距离顶部的距离
         }
         try {
-            NewsPiece newsPiece = newsList.get(position);
-            NewsAPI.read(newsPiece);
-            Bundle bundle = new Bundle();
-            bundle.putString("type", newsPiece.getType().toString());
-            bundle.putString("time", newsPiece.getTimeStr());
-            bundle.putString("source", newsPiece.getSource());
-            bundle.putString("content", newsPiece.getContent());
-            bundle.putString("title", newsPiece.getTitle());
-            Intent intent = new Intent(MainActivity.this, NewsItemActivity.class);
-            intent.putExtras(bundle);
-            startActivity(intent);
+            if (curState != 10) {//不是聚类新闻
+                NewsPiece newsPiece = newsList.get(position);
+                NewsAPI.read(newsPiece);
+                Bundle bundle = new Bundle();
+                bundle.putString("type", newsPiece.getType().toString());
+                bundle.putString("time", newsPiece.getTimeStr());
+                bundle.putString("source", newsPiece.getSource());
+                bundle.putString("content", newsPiece.getContent());
+                bundle.putString("title", newsPiece.getTitle());
+                Intent intent = new Intent(MainActivity.this, NewsItemActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            } else {//是聚类新闻
+                NewsPiece newsPiece = newsList.get(position);
+                Bundle bundle = new Bundle();
+                bundle.putString("type", newsPiece.getType().toString());
+                bundle.putString("time", newsPiece.getTimeStr());
+                bundle.putString("source", newsPiece.getSource());
+                bundle.putString("content", newsPiece.getContent());
+                bundle.putString("title", newsPiece.getTitle());
+                Intent intent = new Intent(MainActivity.this, ClusterItemActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -195,16 +217,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
+                                    clusterNumber = which;
                                 }
                             });
                     builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
-                            ArrayList<Event> tmpNewsList = ClusterAPI.getEventsByCluster(which);
-                            newsList.clear();
-                            newsList.addAll(tmpNewsList);
+                            curState = 10;
+                            refreshMain();
+                            mDrawerLayout.closeDrawer(Gravity.LEFT);
                         }
                     });
                     builder.create().show();
@@ -294,6 +316,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        if (curState == 10) {//疫情聚类
+                            Toast.makeText(MainActivity.this, "无更多新闻", Toast.LENGTH_SHORT).show();
+                            mPullToRefreshLayout.finishRefresh();
+                            return;
+                        }
                         if (curState == 6) {//历史记录
                             showNewsList();
                             Toast.makeText(MainActivity.this, "刷新成功", Toast.LENGTH_SHORT).show();
@@ -330,6 +357,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        if (curState == 10) {
+                            Toast.makeText(MainActivity.this, "无更多聚类新闻", Toast.LENGTH_SHORT).show();
+                            mPullToRefreshLayout.finishLoadMore();
+                            return;
+                        }
                         if (curState == 6) {
                             Toast.makeText(MainActivity.this, "无更多历史新闻", Toast.LENGTH_SHORT).show();
                             mPullToRefreshLayout.finishLoadMore();
