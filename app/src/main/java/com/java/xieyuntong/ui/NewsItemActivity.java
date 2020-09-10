@@ -50,17 +50,17 @@ public class NewsItemActivity extends AppCompatActivity {
         textView_content.setText("\t\t"+content);
         textView_source.setText("来源：" + source);
         textView_time.setText("发布时间：" + time);
-        mToolbar = findViewById(R.id.news_toolbar);
-        mToolbar.setTitle("");
+//        mToolbar = findViewById(R.id.news_toolbar);
+//        mToolbar.setTitle("");
 
         setSupportActionBar(mToolbar);
-        mToolbar.setNavigationIcon(R.drawable.back);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+//        mToolbar.setNavigationIcon(R.drawable.back);
+//        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
         mShareButton = findViewById(R.id.share_button);
         mShareButton.setOnClickListener(new View.OnClickListener() {
             @Override

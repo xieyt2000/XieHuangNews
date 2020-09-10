@@ -74,13 +74,14 @@ public class EpidemicDataActivity extends AppCompatActivity {
         lineChart = findViewById(R.id.linechart);
         mTextView = findViewById(R.id.country_province_text);
         mToolbar = findViewById(R.id.toolbar);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        mToolbar.setNavigationIcon(R.drawable.back);
+        mToolbar.setTitle("疫情数据");
+//        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
+//        mToolbar.setNavigationIcon(R.drawable.back);
         dataList = new ArrayList<Integer>();
         dateArrayList = new ArrayList<Date>();
         graphTextView = findViewById(R.id.graph_text);

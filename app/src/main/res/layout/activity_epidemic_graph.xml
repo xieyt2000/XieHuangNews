@@ -1,102 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.EpidemicGraphActivity">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.EpidemicGraphActivity">
 
 
     <include layout="@layout/common_toolbar" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/graph_edittext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="10" />
+                android:id="@+id/graph_edittext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10" />
 
         <ImageButton
-            android:id="@+id/graph_search"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_gravity="right"
-            android:layout_weight="1"
-            android:scaleType="fitXY"
-            android:src="@drawable/share" />
+                android:id="@+id/graph_search"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:scaleType="fitCenter"
+                android:src="@drawable/search" />
 
 
     </LinearLayout>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="介绍"
-        android:textSize="@dimen/text_size_large" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="200dp">
-
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="10dp"
+            android:text="介绍"
+            android:textSize="@dimen/text_size_large" />
 
-            <TextView
-                android:id="@+id/graph_description"
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textSize="@dimen/text_size_normal" />
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/graph_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="@dimen/text_size_normal" />
 
 
             <ImageView
-                android:id="@+id/graph_picture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp" />
+                    android:id="@+id/graph_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp" />
         </LinearLayout>
     </ScrollView>
 
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="属性"
-        android:textSize="@dimen/text_size_large" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="100dp">
-
-        <TextView
-            android:id="@+id/graph_properties"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="@dimen/text_size_normal" />
+            android:text="属性"
+            android:textSize="@dimen/text_size_large" />
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+        <TextView
+                android:id="@+id/graph_properties"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/text_size_normal" />
     </ScrollView>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="关系"
-        android:textSize="@dimen/text_size_large" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="关系"
+            android:textSize="@dimen/text_size_large" />
 
     <ListView
-        android:id="@+id/listview_relation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            android:id="@+id/listview_relation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 </LinearLayout>
 

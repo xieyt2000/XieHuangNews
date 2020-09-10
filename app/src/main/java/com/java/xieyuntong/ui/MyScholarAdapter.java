@@ -1,18 +1,15 @@
 package com.java.xieyuntong.ui;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.java.xieyuntong.R;
-import com.java.xieyuntong.backend.NewsPiece;
 import com.java.xieyuntong.backend.scholar.Scholar;
 
 import java.util.ArrayList;
@@ -63,7 +60,7 @@ public class MyScholarAdapter extends BaseAdapter {
 
             holder.imageView.setImageResource(R.drawable.passaway);
         }else{
-            holder.imageView.setImageResource(R.drawable.scholar);
+            holder.imageView.setImageResource(R.drawable.passaway);
         }
 
         return view;

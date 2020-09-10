@@ -1,13 +1,8 @@
 package com.java.xieyuntong.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +15,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.java.xieyuntong.R;
 import com.java.xieyuntong.backend.kg.Entity;
 import com.java.xieyuntong.backend.kg.GraphAPI;
@@ -27,12 +25,10 @@ import com.java.xieyuntong.backend.kg.GraphAPI;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 
 
 public class EpidemicGraphActivity extends AppCompatActivity {
@@ -79,19 +75,20 @@ public class EpidemicGraphActivity extends AppCompatActivity {
 
     private void initView() {
         mToolbar = findViewById(R.id.toolbar);
+        mToolbar.setTitle("疫情图谱");
         mEditText = findViewById(R.id.graph_edittext);
         mImageButton = findViewById(R.id.graph_search);
         mImageView = findViewById(R.id.graph_picture);
         textViewDescription = findViewById(R.id.graph_description);
         textViewProperties = findViewById(R.id.graph_properties);
         listViewRelation = findViewById(R.id.listview_relation);
-        mToolbar.setNavigationIcon(R.drawable.back);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+//        mToolbar.setNavigationIcon(R.drawable.back);
+//        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
         mImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,7 +96,8 @@ public class EpidemicGraphActivity extends AppCompatActivity {
                 refresh();
             }
         });
-
+        keyWord="病毒";
+        refresh();
     }
 
     private void refresh() {
