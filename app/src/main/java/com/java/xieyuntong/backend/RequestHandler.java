@@ -52,7 +52,6 @@ public class RequestHandler {
             connection.setRequestMethod("GET");
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             return reader.readLine();
-
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -86,7 +85,6 @@ public class RequestHandler {
         String jsonStr = httpGet(STAT_URL_STR, null);
         ArrayList<EpidemicStat> res = new ArrayList<>();
         try {
-            assert jsonStr != null;
             JSONObject jsonMap = new JSONObject(jsonStr);
             Iterator<String> keys = jsonMap.keys();
             while (keys.hasNext()) {
@@ -109,7 +107,7 @@ public class RequestHandler {
                 }
                 res.add(new EpidemicStat(region, dateString, figures));
             }
-        } catch (JSONException e) {
+        } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
         }
         return res;
@@ -159,7 +157,7 @@ public class RequestHandler {
                         jsonRelation.getString("label"), jsonRelation.getBoolean("forward")));
             }
             return new Entity(label, img, description, properties, relations);
-        } catch (JSONException | IOException e) {
+        } catch (JSONException | IOException | NullPointerException e) {
             e.printStackTrace();
             return null;
         }
@@ -169,7 +167,6 @@ public class RequestHandler {
         String jsonStr = httpGet(SCHOLAR_URL_STR, null);
         ArrayList<Scholar> scholars = new ArrayList<>();
         try {
-            assert jsonStr != null;
             JSONObject jsonObj = new JSONObject(jsonStr);
             JSONArray jsonData = jsonObj.getJSONArray("data");
             for (int i = 0; i < jsonData.length(); i++) {
@@ -192,7 +189,7 @@ public class RequestHandler {
                 boolean passed = jsonScholar.getBoolean("is_passedaway");
                 scholars.add(new Scholar(name, imgURL, indices, bio, affiliation, education, passed));
             }
-        } catch (JSONException | IOException e) {
+        } catch (JSONException | IOException | NullPointerException e) {
             e.printStackTrace();
         }
         return scholars;
