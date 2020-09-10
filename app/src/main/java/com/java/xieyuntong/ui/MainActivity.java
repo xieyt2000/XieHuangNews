@@ -200,14 +200,32 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     refreshMain();
                     mDrawerLayout.closeDrawer(Gravity.LEFT);
                 } else if (id == R.id.col_data) {//疫情数据
+                    if (!NetworkAvail.check(MainActivity.this) ) {
+                        Log.i("network", "no");
+                        Toast.makeText(MainActivity.this, "无网络连接", Toast.LENGTH_SHORT).show();
+                        mDrawerLayout.closeDrawer(Gravity.LEFT);
+                        return true;
+                    }
                     Intent intent = new Intent(MainActivity.this, EpidemicDataActivity.class);
                     startActivity(intent);
                     mDrawerLayout.closeDrawer(Gravity.LEFT);
                 } else if (id == R.id.col_graph) {//疫情图谱
+                    if (!NetworkAvail.check(MainActivity.this) ) {
+                        Log.i("network", "no");
+                        Toast.makeText(MainActivity.this, "无网络连接", Toast.LENGTH_SHORT).show();
+                        mDrawerLayout.closeDrawer(Gravity.LEFT);
+                        return true;
+                    }
                     Intent intent = new Intent(MainActivity.this, EpidemicGraphActivity.class);
                     startActivity(intent);
                     mDrawerLayout.closeDrawer(Gravity.LEFT);
                 } else if (id == R.id.col_cluster) {//新闻聚类
+                    if (!NetworkAvail.check(MainActivity.this) ) {
+                        Log.i("network", "no");
+                        Toast.makeText(MainActivity.this, "无网络连接", Toast.LENGTH_SHORT).show();
+                        mDrawerLayout.closeDrawer(Gravity.LEFT);
+                        return true;
+                    }
                     ArrayList<String> keyWords = ClusterAPI.getClusterKeywords();
                     final String[] items = (String[]) keyWords.toArray(new String[keyWords.size()]);
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, 0);
@@ -232,6 +250,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     builder.create().show();
 
                 } else if (id == R.id.col_scholar) {//知疫学者
+                    if (!NetworkAvail.check(MainActivity.this) ) {
+                        Log.i("network", "no");
+                        Toast.makeText(MainActivity.this, "无网络连接", Toast.LENGTH_SHORT).show();
+                        mDrawerLayout.closeDrawer(Gravity.LEFT);
+                        return true;
+                    }
                     Intent intent = new Intent(MainActivity.this, ScholarActivity.class);
                     startActivity(intent);
                     mDrawerLayout.closeDrawer(Gravity.LEFT);
