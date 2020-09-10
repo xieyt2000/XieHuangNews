@@ -191,6 +191,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 } else if (id == R.id.col_cluster) {//新闻聚类
 
                 } else if (id == R.id.col_scholar) {//知疫学者
+                    Intent intent = new Intent(MainActivity.this, ScholarActivity.class);
+                    startActivity(intent);
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
 
                 }
                 return true;
