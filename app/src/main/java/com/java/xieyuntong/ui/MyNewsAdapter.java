@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.java.xieyuntong.R;
-import com.java.xieyuntong.backend.NewsPiece;
+import com.java.xieyuntong.backend.news.NewsPiece;
 
 import java.util.ArrayList;
 

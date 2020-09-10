@@ -26,11 +26,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.java.xieyuntong.R;
 import com.java.xieyuntong.backend.BackEnd;
-import com.java.xieyuntong.backend.NewsAPI;
-import com.java.xieyuntong.backend.NewsPiece;
 import com.java.xieyuntong.backend.cluster.ClusterAPI;
 import com.java.xieyuntong.backend.cluster.Event;
-import com.java.xieyuntong.data.EpidemicDataActivity;
+import com.java.xieyuntong.backend.news.NewsAPI;
+import com.java.xieyuntong.backend.news.NewsPiece;
 import com.jwenfeng.library.pulltorefresh.BaseRefreshListener;
 import com.jwenfeng.library.pulltorefresh.PullToRefreshLayout;
 

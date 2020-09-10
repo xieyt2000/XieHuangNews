@@ -1,4 +1,4 @@
-package com.java.xieyuntong.data;
+package com.java.xieyuntong.ui;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,8 +22,8 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.java.xieyuntong.R;
-import com.java.xieyuntong.backend.EpidemicStat;
-import com.java.xieyuntong.backend.StatAPI;
+import com.java.xieyuntong.backend.stat.EpidemicStat;
+import com.java.xieyuntong.backend.stat.StatAPI;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

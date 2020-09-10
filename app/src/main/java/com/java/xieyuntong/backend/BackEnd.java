@@ -3,7 +3,9 @@ package com.java.xieyuntong.backend;
 import android.app.Activity;
 
 import com.java.xieyuntong.backend.cluster.ClusterAPI;
+import com.java.xieyuntong.backend.news.NewsHistory;
 import com.java.xieyuntong.backend.scholar.ScholarAPI;
+import com.java.xieyuntong.backend.stat.StatAPI;
 
 import java.io.File;
 import java.io.IOException;

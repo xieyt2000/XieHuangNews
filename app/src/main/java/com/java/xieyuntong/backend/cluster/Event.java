@@ -1,6 +1,6 @@
 package com.java.xieyuntong.backend.cluster;
 
-import com.java.xieyuntong.backend.NewsPiece;
+import com.java.xieyuntong.backend.news.NewsPiece;
 
 public class Event extends NewsPiece {
 

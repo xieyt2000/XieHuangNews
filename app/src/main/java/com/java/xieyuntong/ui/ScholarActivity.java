@@ -1,17 +1,15 @@
 package com.java.xieyuntong.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.java.xieyuntong.R;
-import com.java.xieyuntong.backend.NewsAPI;
-import com.java.xieyuntong.backend.NewsPiece;
 import com.java.xieyuntong.backend.scholar.Scholar;
 import com.java.xieyuntong.backend.scholar.ScholarAPI;
 

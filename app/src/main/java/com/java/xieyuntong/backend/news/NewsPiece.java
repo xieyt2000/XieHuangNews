@@ -1,6 +1,8 @@
-package com.java.xieyuntong.backend;
+package com.java.xieyuntong.backend.news;
 
 import androidx.annotation.NonNull;
+
+import com.java.xieyuntong.backend.BasicFunction;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -47,7 +49,7 @@ public class NewsPiece {
 
     //constructor
 
-    protected NewsPiece(NewsType type, String timeStr, String source, String title, String content, String ID) {
+    public NewsPiece(NewsType type, String timeStr, String source, String title, String content, String ID) {
         Date time1;
         this.type = type;
         try {

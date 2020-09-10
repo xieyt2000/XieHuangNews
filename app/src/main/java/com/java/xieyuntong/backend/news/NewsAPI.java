@@ -1,4 +1,6 @@
-package com.java.xieyuntong.backend;
+package com.java.xieyuntong.backend.news;
+
+import com.java.xieyuntong.backend.RequestHandler;
 
 import java.util.ArrayList;
 

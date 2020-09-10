@@ -6,7 +6,9 @@ import android.graphics.BitmapFactory;
 import androidx.annotation.Nullable;
 
 import com.java.xieyuntong.backend.kg.Entity;
+import com.java.xieyuntong.backend.news.NewsPiece;
 import com.java.xieyuntong.backend.scholar.Scholar;
+import com.java.xieyuntong.backend.stat.EpidemicStat;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,7 +60,7 @@ public class RequestHandler {
         }
     }
 
-    static ArrayList<NewsPiece> requestNews(NewsPiece.NewsType type, int page, int size) {
+    public static ArrayList<NewsPiece> requestNews(NewsPiece.NewsType type, int page, int size) {
         LinkedHashMap<String, String> para = new LinkedHashMap<>();
         para.put("type", type.toString());
         para.put("page", Integer.toString(page));
@@ -81,7 +83,7 @@ public class RequestHandler {
         return res;
     }
 
-    static ArrayList<EpidemicStat> requestStat() {
+    public static ArrayList<EpidemicStat> requestStat() {
         String jsonStr = httpGet(STAT_URL_STR, null);
         ArrayList<EpidemicStat> res = new ArrayList<>();
         try {

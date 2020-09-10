@@ -1,4 +1,4 @@
-package com.java.xieyuntong.backend;
+package com.java.xieyuntong.backend.news;
 
 import android.util.Log;
 
@@ -9,9 +9,9 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class NewsHistory {
+public class NewsHistory {
 
-    static File HistoryFile;
+    public static File HistoryFile;
 
 
     //hidden constructor
