@@ -45,7 +45,7 @@ public class MyNewsAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        ViewHolder holder = null;
+        ViewHolder holder;
         if (view == null) {
             view = inflater.inflate(R.layout.news_list_layout, null);
             holder = new ViewHolder();
@@ -58,7 +58,7 @@ public class MyNewsAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
         Log.i("news", String.valueOf(i));
-        holder.textView1.setText(newsPieceArrayList.get(i).getTitle());
+        holder.textView1.setText(newsPieceArrayList.get(i).getTitleAbstract());
         holder.textView2.setText(newsPieceArrayList.get(i).getSource());
         holder.textView3.setText(newsPieceArrayList.get(i).getTimeStr());
         if (newsPieceArrayList.get(i).getHaveRead()) {//设置灰色

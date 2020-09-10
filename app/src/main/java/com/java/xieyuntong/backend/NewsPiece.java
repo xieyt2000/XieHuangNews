@@ -58,7 +58,7 @@ public class NewsPiece {
         }
         this.time = time1;
         this.source = source;
-        this.title = title;
+        this.title = title.replace("\n", "");
         this.content = content;
         this.ID = ID;
     }
@@ -136,6 +136,10 @@ public class NewsPiece {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getTitleAbstract() {
+        return BasicFunction.getPrefixAbs(title, 84);
     }
 
     public boolean getHaveRead() {
