@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+
         android:id="@+id/news_list_linearlayout"
         android:layout_width="match_parent"
         android:layout_height="120dp"
@@ -41,6 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="right"
                 android:textAppearance="?attr/textAppearanceListItemSecondary"
                 android:textSize="@dimen/text_size_normal" />
 

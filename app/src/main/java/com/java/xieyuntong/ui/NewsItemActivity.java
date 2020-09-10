@@ -1,5 +1,6 @@
 package com.java.xieyuntong.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.java.xieyuntong.R;
 import com.mob.MobSDK;
 
@@ -25,7 +27,7 @@ public class NewsItemActivity extends AppCompatActivity {
     private TextView textView_source;
     private TextView textView_time;
     private Toolbar mToolbar;
-    private ImageButton mShareButton;
+    private FloatingActionButton mShareButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class NewsItemActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void init() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -48,11 +51,12 @@ public class NewsItemActivity extends AppCompatActivity {
         textView_source = findViewById(R.id.news_source);
         textView_time = findViewById(R.id.news_time);
         textView_title.setText(title);
-        textView_content.setText(content);
+        textView_content.setText("\t\t"+content);
         textView_source.setText("来源：" + source);
         textView_time.setText("发布时间：" + time);
         mToolbar = findViewById(R.id.news_toolbar);
-        mToolbar.setTitle("新闻");
+        mToolbar.setTitle("");
+
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.back);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
