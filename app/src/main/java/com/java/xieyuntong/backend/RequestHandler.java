@@ -197,5 +197,27 @@ public class RequestHandler {
         }
         return scholars;
     }
+
+    static public Bitmap getImage(final String urlStr) {
+        final Bitmap[] ret = {null};
+        Thread netThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL imgURL = new URL(urlStr);
+                    ret[0] = BitmapFactory.decodeStream(imgURL.openConnection().getInputStream());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        netThread.start();
+        try {
+            netThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return ret[0];
+    }
 }
 
