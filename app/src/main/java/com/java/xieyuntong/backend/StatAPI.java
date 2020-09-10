@@ -11,7 +11,7 @@ public class StatAPI {
             allStat = RequestHandler.requestStat();
         }
     });
-
+    private static boolean threadStarted = false;
 
     //hidden constructor
     private StatAPI() {
@@ -20,8 +20,7 @@ public class StatAPI {
 
     private static void makeStatReady() {
         if (allStat == null) {
-            if (!requestThread.isAlive())
-                refreshStat();
+            refreshStat();
             try {
                 requestThread.join();
             } catch (InterruptedException e) {
@@ -34,7 +33,10 @@ public class StatAPI {
     //API for frontend client
 
     public static void refreshStat() {
-        requestThread.start();
+        if (!threadStarted) {
+            requestThread.start();
+            threadStarted = true;
+        }
     }
 
     public static ArrayList<EpidemicStat> getAllStat() {

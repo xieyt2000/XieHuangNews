@@ -12,11 +12,11 @@ public class ScholarAPI {
             scholars = RequestHandler.requestScholars();
         }
     });
+    private static boolean threadStarted = false;
 
     private static void makeScholarReady() {
         if (scholars == null) {
-            if (!requestThread.isAlive())
-                refreshScholar();
+            refreshScholar();
             try {
                 requestThread.join();
             } catch (InterruptedException e) {
@@ -29,7 +29,10 @@ public class ScholarAPI {
     //API for frontend client
 
     public static void refreshScholar() {
-        requestThread.start();
+        if (!threadStarted) {
+            requestThread.start();
+            threadStarted = true;
+        }
     }
 
     public static ArrayList<Scholar> getAllScholars() {
