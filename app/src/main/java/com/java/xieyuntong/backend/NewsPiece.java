@@ -47,7 +47,7 @@ public class NewsPiece {
 
     //constructor
 
-    NewsPiece(NewsType type, String timeStr, String source, String title, String content, String ID) {
+    protected NewsPiece(NewsType type, String timeStr, String source, String title, String content, String ID) {
         Date time1;
         this.type = type;
         try {
@@ -63,7 +63,7 @@ public class NewsPiece {
         this.ID = ID;
     }
 
-    NewsPiece(String str) {
+    protected NewsPiece(String str) {
         Date time1;
         String[] strList = str.split("###");
         this.type = NewsType.fromString(strList[0]);
