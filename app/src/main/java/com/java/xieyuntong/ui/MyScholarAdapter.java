@@ -57,10 +57,9 @@ public class MyScholarAdapter extends BaseAdapter {
         holder.textView1.setText(scholars.get(i).getName());
         holder.textView2.setText(scholars.get(i).getAffiliation());
         if (scholars.get(i).isPassedAway()) {
-
             holder.imageView.setImageResource(R.drawable.passaway);
         }else{
-            holder.imageView.setImageResource(R.drawable.passaway);
+            holder.imageView.setImageResource(R.drawable.blank);
         }
 
         return view;
