@@ -5,15 +5,15 @@ import java.net.URL;
 public class Scholar {
 
     public static class Indices {
-        final public int activity;
+        final public double activity;
         final public int citations;
         final public int gindex;
         final public int hindex;
-        final public int newStar;
-        final public int risingStar;
-        final public int sociability;
+        final public double newStar;
+        final public double risingStar;
+        final public double sociability;
 
-        public Indices(int activity, int citations, int gindex, int hindex, int newStar, int risingStar, int sociability) {
+        public Indices(double activity, int citations, int gindex, int hindex, double newStar, double risingStar, double sociability) {
             this.activity = activity;
             this.citations = citations;
             this.gindex = gindex;

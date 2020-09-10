@@ -176,10 +176,10 @@ public class RequestHandler {
                 JSONObject jsonScholar = jsonData.getJSONObject(i);
                 URL imgURL = new URL(jsonScholar.getString("avatar"));
                 JSONObject jsonInd = jsonScholar.getJSONObject("indices");
-                Scholar.Indices indices = new Scholar.Indices(jsonInd.getInt("activity"),
+                Scholar.Indices indices = new Scholar.Indices(jsonInd.getDouble("activity"),
                         jsonInd.getInt("citations"), jsonInd.getInt("gindex"),
-                        jsonInd.getInt("hindex"), jsonInd.getInt("newStar"),
-                        jsonInd.getInt("risingStar"), jsonInd.getInt("sociability"));
+                        jsonInd.getInt("hindex"), jsonInd.getDouble("newStar"),
+                        jsonInd.getDouble("risingStar"), jsonInd.getDouble("sociability"));
                 String name = jsonScholar.optString("name_zh");
                 if (name.equals(""))
                     name = jsonScholar.getString("name");
