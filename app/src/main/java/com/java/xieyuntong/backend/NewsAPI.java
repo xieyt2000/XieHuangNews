@@ -8,6 +8,7 @@ public class NewsAPI {
     static private int size = 20;
     static private NewsPiece.NewsType type = NewsPiece.NewsType.NEWS;
     static private ArrayList<NewsPiece> localHistory = new ArrayList<>();    //load when reset
+    static private final int searchSize = 500;
 
 
     // hidden constructor
@@ -48,14 +49,25 @@ public class NewsAPI {
 
 
     static public ArrayList<NewsPiece> search(String query) {
+        final ArrayList<NewsPiece> toSearch = new ArrayList<>();
+        Thread netThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                toSearch.addAll(RequestHandler.requestNews(type, 1, searchSize));
+            }
+        });
+        netThread.start();
+        try {
+            netThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         ArrayList<NewsPiece> res = new ArrayList<>();
         if (query.equals(""))
             return res;
-        for (ArrayList<NewsPiece> newsPage : newsPagesList) {
-            for (NewsPiece newsPiece : newsPage) {
-                if (newsPiece.getTitle().contains(query))
-                    res.add(newsPiece);
-            }
+        for (NewsPiece newsPiece : toSearch) {
+            if (newsPiece.getTitle().contains(query))
+                res.add(newsPiece);
         }
         return res;
     }
