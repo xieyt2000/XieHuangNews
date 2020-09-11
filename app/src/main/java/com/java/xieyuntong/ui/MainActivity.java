@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (sharedPreferences.getBoolean("news", false)) {
             curState = 0;//新闻
         } else {
-            curState = 7;//历史
+            curState = 6;//历史
         }
 
         newsList = new ArrayList<>();
