@@ -479,7 +479,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             showNewsList();
             listView.setSelectionFromTop(prevSelection, prevFromTop);//回到原位置
         } else {
-
+            Intent outIntent = new Intent(this, AboutActivity.class);
+            startActivity(outIntent);
         }
         return super.onOptionsItemSelected(item);
     }
