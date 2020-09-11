@@ -47,11 +47,11 @@ public class NewsItemActivity extends AppCompatActivity {
         textView_source = findViewById(R.id.news_source);
         textView_time = findViewById(R.id.news_time);
         textView_title.setText(title);
-        textView_content.setText("\t\t"+content);
-        textView_source.setText("来源：" + source);
-        textView_time.setText("发布时间：" + time);
-//        mToolbar = findViewById(R.id.news_toolbar);
-//        mToolbar.setTitle("");
+        textView_content.setText("\t\t\t\t" + content);
+        textView_source.setText("\t\t\t\t来源：" + source);
+        textView_time.setText("\t\t\t\t发布时间：" + time);
+        mToolbar = findViewById(R.id.news_toolbar);
+        mToolbar.setTitle("");
 
         setSupportActionBar(mToolbar);
 //        mToolbar.setNavigationIcon(R.drawable.back);
