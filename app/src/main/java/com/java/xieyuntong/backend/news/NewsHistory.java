@@ -25,6 +25,8 @@ public class NewsHistory {
     }
 
     static void saveNews(NewsPiece news) {
+        if(news.getType().equals(NewsPiece.NewsType.EVENT))
+            return;
         try (PrintStream ps = new PrintStream(new FileOutputStream(HistoryFile, true))) {
             ps.println(news);
         } catch (FileNotFoundException e) {
