@@ -2,6 +2,10 @@
 
 本程序实现了一个查看新冠疫情咨询的安卓App，可以获取新闻、数据等与新冠疫情有关的信息。
 
+细节请参考 [doc](https://github.com/xieyt2000/XieHuangNews/blob/master/doc/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.pdf) 和 [demo](https://github.com/xieyt2000/XieHuangNews/blob/master/doc/%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91.mp4)
+
+
+
 ## 环境
 
 #### 运行环境
@@ -15,6 +19,8 @@ Gradle 6.1.1
 Java 1.8.0_242
 
 Compiler SDK 30 (API 30 Android 10.0+)
+
+
 
 ## 功能
 
@@ -36,6 +42,8 @@ Compiler SDK 30 (API 30 Android 10.0+)
 | -------- | -------------------------- |
 | 新闻聚类 | 疫情新闻聚类               |
 | 知疫学者 | 显示在本次疫情中的知名学者 |
+
+
 
 ## 关于
 
